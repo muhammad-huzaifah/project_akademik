@@ -82,6 +82,13 @@ class Kurikulum extends CI_Controller
 		redirect('kurikulum');
 	}
 
+	function detail() {
+		$infoSekolah = "SELECT js.jumlah_kelas
+    					FROM tabel_jenjang_sekolah as js, table_sekolah_info as si WHERE js.id_jenjang=si.id_jenjang_sekolah ";
+		$data['info'] = $this->db->query($infoSekolah)->row_array();
+		$this->template->load('template', 'kurikulum/detail', $data);
+	}
+
 
 }
 

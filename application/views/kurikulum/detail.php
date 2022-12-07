@@ -13,8 +13,15 @@
 						<div class="row">
 							<div class="col-sm-12">
 								<table class="table table-bordered">
-									<tr><td>Jurusan</td><td><?php echo cmb_dinamis('jurusan', 'tabel_jurusan', 'nama_jurusan', 'kd_jurusan' ) ;?></td><td></td></tr>
-									<tr><td>Kelas</td><td></td><td></td></tr>
+									<tr><td>Jurusan</td><td><?php echo cmb_dinamis('jurusan', 'tabel_jurusan', 'nama_jurusan', 'kd_jurusan' ) ;?></td></tr>
+									<tr><td>Kelas</td><td>
+											<select id="kelas" class="form-control">
+												<?php for ($i=1;$i<=$info['jumlah_kelas'];$i++) {
+													echo "<option value='$i'>Kelas $i</option>";
+												}
+												?>
+											</select>
+										</td></tr>
 								</table>
 							</div>
 						</div>
