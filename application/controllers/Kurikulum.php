@@ -89,6 +89,28 @@ class Kurikulum extends CI_Controller
 		$this->template->load('template', 'kurikulum/detail', $data);
 	}
 
+	function dataKurikulumDetail() {
+		echo "<table id='tabel' class='table table-striped table-bordered dataTable''style='width: 100%' role='grid'>
+				<thead>
+					<tr>
+						<th>NO</th>
+						<th>KODE MAPEL</th>
+						<th>NAMA MATA PELAJARAN</th>
+						<th>KELAS</th>
+						<th></th>
+					</tr>				
+				</thead>";
+		$sql = "SELECT tj.nama_jurusan, tm.kd_mapel, tm.nama_mapel, tkd.kelas
+    			FROM tabel_kurikulum_detail as tkd, tabel_kurikulum as tk, tabel_mapel as tm , tabel_jurusan as tj WHERE tkd.id_kurikulum=tk.id_kurikulum and tkd.kd_mapel=tm.kd_mapel and tkd.kd_jurusan=tj.kd_jurusan";
+		$kurikulum = $this->db->query($sql)->result();
+		$no = 1;
+		foreach ($kurikulum as $row) {
+			echo "<tr><td>$no</td><td>$row->kd_mapel</td><td>$row->nama_mapel</td><td>$row->kelas</td><td></td></tr>";
+			$no++;
+		}
+		echo" 	  </table>";
+	}
+
 
 }
 

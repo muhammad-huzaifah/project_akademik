@@ -53,16 +53,7 @@
 					<div class="x_content">
 						<div class="row">
 							<div class="col-sm-12">
-								<table id="mytable" class="table table-striped table-bordered dataTable" style="width: 100%" role="grid">
-									<thead>
-									<tr>
-										<th>NO</th>
-										<th>MATA PELAJARAN</th>
-										<th>KELAS</th>
-										<th>AKSI</th>
-									</tr>
-									</thead>
-								</table>
+								<div id="tabel"></div>
 							</div>
 						</div>
 					</div>
@@ -71,4 +62,26 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		loadData();
+		}
+	);
+</script>
+
+<script type="text/javascript">
+	function loadData() {
+		$.ajax( {
+			type:'GET',
+			url:'<?php echo base_url()?>index.php/kurikulum/dataKurikulumDetail',
+			data:'',
+			success:function (html) {
+				$("#tabel").html(html);
+			}
+			}
+
+		)
+	}
+</script>
 
