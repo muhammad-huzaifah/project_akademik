@@ -13,9 +13,9 @@
 						<div class="row">
 							<div class="col-sm-12">
 								<table class="table table-bordered">
-									<tr><td>Jurusan</td><td><?php echo cmb_dinamis('jurusan', 'tabel_jurusan', 'nama_jurusan', 'kd_jurusan' ) ;?></td></tr>
+									<tr><td>Jurusan</td><td><?php echo cmb_dinamis('jurusan', 'tabel_jurusan', 'nama_jurusan', 'kd_jurusan', null, "id='jurusan' onChange='loadData()' " ) ;?></td></tr>
 									<tr><td>Kelas</td><td>
-											<select id="kelas" class="form-control">
+											<select id="kelas" class="form-control" onchange="loadData()">
 												<?php for ($i=1;$i<=$info['jumlah_kelas'];$i++) {
 													echo "<option value='$i'>Kelas $i</option>";
 												}
@@ -72,16 +72,26 @@
 
 <script type="text/javascript">
 	function loadData() {
+		var kelas = $("#kelas").val();
+		var jurusan = $("#jurusan").val();
 		$.ajax( {
 			type:'GET',
 			url:'<?php echo base_url()?>index.php/kurikulum/dataKurikulumDetail',
-			data:'',
+			data:'jurusan='+jurusan+'&kelas='+kelas,
 			success:function (html) {
 				$("#tabel").html(html);
 			}
 			}
-
 		)
+	}
+
+	function filterData() {
+		// alert('filter');
+		// var kelas = $("#kelas").val();
+		// var jurusan = $("#jurusan").val();
+		// alert(kelas);
+		// alert(jurusan);
+		loadData();
 	}
 </script>
 
