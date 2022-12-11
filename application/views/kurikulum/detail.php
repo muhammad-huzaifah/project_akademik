@@ -23,6 +23,7 @@
 												?>
 											</select>
 										</td></tr>
+									<tr><td colspan="2"><?php echo anchor('kurikulum/adddetail', '<i class="fa fa-edit"></i> Tambah Data', "title='Tambah Data' class='btn btn-danger btn-sm'"); ?></td></tr>
 								</table>
 							</div>
 						</div>
@@ -35,7 +36,6 @@
 					<div class="x_title">
 						<h2>Daftar Pelajaran</h2>
 						<ul class="nav navbar-right panel_toolbox">
-							<li><?php echo anchor('kurikulum/add', '<i class="fa fa-edit"></i>', 'title="Tambah Data"'); ?></li>
 							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
 							<li class="dropdown">
