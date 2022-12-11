@@ -90,6 +90,15 @@ class Kurikulum extends CI_Controller
 	}
 
 	function dataKurikulumDetail() {
+
+		$kd_jurusan = $_GET['jurusan'];
+		$kelas = $_GET['kelas'];
+		if ($kelas == 'semua_kelas') {
+			$selected_kelas = '';
+		} else {
+			$selected_kelas = "and tkd.kelas='$kelas'";
+		}
+
 		echo "<table id='tabel' class='table table-striped table-bordered dataTable''style='width: 100%' role='grid'>
 				<thead>
 					<tr>
@@ -97,18 +106,28 @@ class Kurikulum extends CI_Controller
 						<th>KODE MAPEL</th>
 						<th>NAMA MATA PELAJARAN</th>
 						<th>KELAS</th>
-						<th></th>
+						<th>AKSI</th>
 					</tr>				
 				</thead>";
-		$sql = "SELECT tj.nama_jurusan, tm.kd_mapel, tm.nama_mapel, tkd.kelas
-    			FROM tabel_kurikulum_detail as tkd, tabel_kurikulum as tk, tabel_mapel as tm , tabel_jurusan as tj WHERE tkd.id_kurikulum=tk.id_kurikulum and tkd.kd_mapel=tm.kd_mapel and tkd.kd_jurusan=tj.kd_jurusan";
+		$sql = "SELECT tj.nama_jurusan, tm.kd_mapel, tm.nama_mapel, tkd.kelas, tkd.id_kurikulum_detail, tkd.id_kurikulum 
+    			FROM tabel_kurikulum_detail as tkd, tabel_kurikulum as tk, tabel_mapel as tm , tabel_jurusan as tj WHERE tkd.id_kurikulum=tk.id_kurikulum and tkd.kd_mapel=tm.kd_mapel and tkd.kd_jurusan=tj.kd_jurusan $selected_kelas and tkd.kd_jurusan='$kd_jurusan'";
 		$kurikulum = $this->db->query($sql)->result();
 		$no = 1;
 		foreach ($kurikulum as $row) {
-			echo "<tr><td>$no</td><td>$row->kd_mapel</td><td>$row->nama_mapel</td><td>$row->kelas</td><td></td></tr>";
+			echo "<tr><td>$no</td><td>$row->kd_mapel</td><td>$row->nama_mapel</td><td>$row->kelas</td><td>".anchor('kurikulum/deletedetail/'.$row->id_kurikulum_detail.'/'. $row->id_kurikulum,'<i class="fa fa-trash"></i>')."</td></tr>";
 			$no++;
 		}
 		echo" 	  </table>";
+	}
+
+	function deletedetail() {
+		$id_kurikulum_detail = $this->uri->segment(3);
+		$id_kurikulum        = $this->uri->segment(4);
+		if (!empty($id_kurikulum_detail)) {
+			$this->db->where('id_kurikulum_detail', $id_kurikulum_detail);
+			$this->db->delete('tabel_kurikulum_detail');
+		}
+		redirect('kurikulum/detail/'.$id_kurikulum);
 	}
 
 

@@ -13,9 +13,10 @@
 						<div class="row">
 							<div class="col-sm-12">
 								<table class="table table-bordered">
-									<tr><td>Jurusan</td><td><?php echo cmb_dinamis('jurusan', 'tabel_jurusan', 'nama_jurusan', 'kd_jurusan', null, "id='jurusan' onChange='loadData()' " ) ;?></td></tr>
+									<tr><td>Jurusan</td><td><?php echo cmb_dinamis('jurusan', 'tabel_jurusan', 'nama_jurusan', 'kd_jurusan', null, "id='jurusan' onChange='loadData()'");?></td></tr>
 									<tr><td>Kelas</td><td>
 											<select id="kelas" class="form-control" onchange="loadData()">
+												<option value="semua_kelas">Semua Kelas</option>
 												<?php for ($i=1;$i<=$info['jumlah_kelas'];$i++) {
 													echo "<option value='$i'>Kelas $i</option>";
 												}
@@ -85,13 +86,13 @@
 		)
 	}
 
-	function filterData() {
+	// function filterData() {
 		// alert('filter');
 		// var kelas = $("#kelas").val();
 		// var jurusan = $("#jurusan").val();
 		// alert(kelas);
 		// alert(jurusan);
-		loadData();
-	}
+		// loadData();
+	// }
 </script>
 
