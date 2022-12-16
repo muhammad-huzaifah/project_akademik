@@ -22,4 +22,14 @@ class Model_kurikulum extends CI_Model
 		$this->db->update($this->table, $data);
 	}
 
+	function addKurikulumDetail(){
+		$data = array(
+			'kd_mapel' 		=> $this->input->post('kd_mapel', TRUE),
+			'kelas' 		=> $this->input->post('kelas', TRUE),
+			'kd_jurusan'	=> $this->input->post('kd_jurusan', TRUE),
+			'id_kurikulum' 	=> $this->input->post('id_kurikulum', TRUE),
+		);
+		$this->db->insert('tabel_kurikulum_detail', $data);
+	}
+
 }

@@ -1,4 +1,4 @@
-<div class="right_col" role="main">
+ <div class="right_col" role="main">
 	<div class="">
 		<div class="page-title">
 			<div class="title_left">
@@ -34,10 +34,18 @@
 								echo form_open('kurikulum/adddetail', 'id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate=""');
 							?>
 							<div class="item form-group">
+								<label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">KURIKULUM<span class="required">*</span>
+								</label>
+								<div class="col-md-6 col-sm-6 ">
+									<?php echo cmb_dinamis('id_kurikulum', 'tabel_kurikulum', 'nama_kurikulum', 'id_kurikulum', $this->uri->segment(3)) ?>
+								</div>
+							</div>
+
+							<div class="item form-group">
 								<label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">MATA PELAJARAN<span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 ">
-									<?php echo cmb_dinamis('mapel', 'tabel_mapel', 'nama_mapel', 'kd_mapel') ?>
+									<?php echo cmb_dinamis('kd_mapel', 'tabel_mapel', 'nama_mapel', 'kd_mapel') ?>
 								</div>
 							</div>
 
@@ -45,7 +53,7 @@
 								<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">JURUSAN<span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 ">
-									<?php echo cmb_dinamis('jurusan', 'tabel_jurusan', 'nama_jurusan', 'kd_jurusan') ?>
+									<?php echo cmb_dinamis('kd_jurusan', 'tabel_jurusan', 'nama_jurusan', 'kd_jurusan') ?>
 								</div>
 							</div>
 
@@ -53,7 +61,7 @@
 								<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">KELAS<span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 ">
-									<select id="kelas" class="form-control">
+									<select name="kelas" class="form-control">
 										<?php for ($i=1;$i<=$info['jumlah_kelas'];$i++) {
 											echo "<option value='$i'>Kelas $i</option>";
 										}
@@ -67,7 +75,7 @@
 							<div class="item form-group">
 								<div class="col-md-6 col-sm-6 offset-md-3">
 									<?php
-										echo anchor('kurikulum', 'Kembali', array('class'=>'btn btn-primary'));
+										echo anchor('kurikulum/detail/'.$this->uri->segment(3), 'Kembali', array('class'=>'btn btn-primary'));
 									?>
 									<button type="submit" name="submit" class="btn btn-success">Simpan</button>
 								</div>

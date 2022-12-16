@@ -91,8 +91,10 @@ class Kurikulum extends CI_Controller
 
 	function dataKurikulumDetail() {
 
-		$kd_jurusan = $_GET['jurusan'];
-		$kelas = $_GET['kelas'];
+		$kd_jurusan 	= $_GET['jurusan'];
+		$kelas 			= $_GET['kelas'];
+		$id_kurikulum 	= $_GET['id_kurikulum'];
+
 		if ($kelas == 'semua_kelas') {
 			$selected_kelas = '';
 		} else {
@@ -110,7 +112,7 @@ class Kurikulum extends CI_Controller
 					</tr>				
 				</thead>";
 		$sql = "SELECT tj.nama_jurusan, tm.kd_mapel, tm.nama_mapel, tkd.kelas, tkd.id_kurikulum_detail, tkd.id_kurikulum 
-    			FROM tabel_kurikulum_detail as tkd, tabel_kurikulum as tk, tabel_mapel as tm , tabel_jurusan as tj WHERE tkd.id_kurikulum=tk.id_kurikulum and tkd.kd_mapel=tm.kd_mapel and tkd.kd_jurusan=tj.kd_jurusan $selected_kelas and tkd.kd_jurusan='$kd_jurusan'";
+    			FROM tabel_kurikulum_detail as tkd, tabel_kurikulum as tk, tabel_mapel as tm , tabel_jurusan as tj WHERE tkd.id_kurikulum=tk.id_kurikulum and tkd.kd_mapel=tm.kd_mapel and tkd.kd_jurusan=tj.kd_jurusan $selected_kelas and tkd.id_kurikulum='$id_kurikulum' and tkd.kd_jurusan='$kd_jurusan'";
 		$kurikulum = $this->db->query($sql)->result();
 		$no = 1;
 		foreach ($kurikulum as $row) {
@@ -121,11 +123,16 @@ class Kurikulum extends CI_Controller
 	}
 
 	function adddetail() {
-		$infoSekolah = "SELECT js.jumlah_kelas
-    					FROM tabel_jenjang_sekolah as js, table_sekolah_info as si WHERE js.id_jenjang=si.id_jenjang_sekolah ";
-		$data['info'] = $this->db->query($infoSekolah)->row_array();
-		$this->template->load('template', 'kurikulum/addDetail', $data);
+		if (isset($_POST['submit'])) {
+			$this->Model_kurikulum->addKurikulumDetail();
+			redirect('kurikulum/detail/'.$this->input->post('id_kurikulum'));
+		} else {
+			$infoSekolah = "SELECT js.jumlah_kelas
+    					   FROM tabel_jenjang_sekolah as js, table_sekolah_info as si WHERE js.id_jenjang=si.id_jenjang_sekolah ";
+			$data['info'] = $this->db->query($infoSekolah)->row_array();
+			$this->template->load('template', 'kurikulum/addDetail', $data);
 
+		}
 	}
 
 	function deletedetail() {
