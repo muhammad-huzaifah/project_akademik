@@ -59,32 +59,29 @@ class Jadwal extends CI_Controller
 				and tkd.kelas='$kelas' and tj.kd_jurusan='$kd_jurusan'";
 		$jadwal = $this->db->query($sql)->result();
 		$no = 1;
+		$jam_pelajaran = $this->model_jadwal->getJamPelajaran();
+		$hari = array(
+			'Senin' => 'Senin',
+			'Selasa'=> 'Selasa',
+			'Rabu'  => 'Rabu',
+			'Kamis' => 'Kamis',
+			'Jumat' => 'Jumat',
+			'Sabtu' => 'Sabtu'
+		);
 		foreach ($jadwal as $row) {
 			echo "<tr>
 					<td>$no</td>
 					<td>$row->nama_mapel</td>
-					<td>$row->nama_guru</td>
-					<td>$row->nama_ruangan</td>
-					<th>$row->hari</th>
-					<th>$row->jam_mulai</th>
+					<td>".cmb_dinamis('guru', 'tabel_guru', 'nama_guru', 'id_guru', null, "id='guru".$row->id_jadwal."' onchange='updateGuru(".$row->id_jadwal.")'")."</td>
+					<td>".cmb_dinamis('ruangan', 'tabel_ruangan', 'nama_ruangan', 'kd_ruangan')."</td>
+					<th>" . form_dropdown('hari', $hari, null, "class='form-control'") . "</th>
+					<th>" . form_dropdown('jam', $jam_pelajaran, null, "class='form-control'") . "</th>
 					<td>" . anchor('kurikulum/deletedetail/' . $row->id_jadwal, '<i class="fa fa-trash"></i>') . "</td>
 				   </tr>";
 			$no++;
 		}
-		echo " 	  </table>";
+		echo "</table>";
 
-		$jam_pelajaran = array(
-			'07.15 - 08.00' => '07.15 - 08.00',
-			'08.00 - 08.45' => '08.15 - 08.45',
-			'08.45 - 09.30' => '08.45 - 09.30',
-			'09.30 - 10.00' => '09.30 - 10.00',
-			'10.00 - 10.45' => '10.00 - 10.45',
-			'10.45 - 11.30' => '10.45 - 11.30',
-			'11.30 - 12.15' => '11.30 - 12.15',
-			'12.15 - 13.00' => '12.15 - 13.00',
-			'13.00 - 13.30' => '13.00 - 13.30',
-			'13.30 - 14.15' => '13.30 - 14.15',
-			'14.15 - 15.00' => '14.15 - 15.0'
-		);
+
 	}
 }

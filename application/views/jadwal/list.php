@@ -93,6 +93,10 @@
 			}
 		)
 	}
+
+	function updateGuru(id) {
+		alert('sas');
+	}
 </script>
 
 <!-- Modal -->
