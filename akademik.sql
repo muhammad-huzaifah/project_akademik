@@ -1,4 +1,4 @@
--- MySQL dump 10.16  Distrib 10.1.38-MariaDB, for Win64 (AMD64)
+-- MariaDB dump 10.19  Distrib 10.4.25-MariaDB, for Win64 (AMD64)
 --
 -- Host: 127.0.0.1    Database: akademik
 -- ------------------------------------------------------
@@ -7,7 +7,7 @@
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -52,7 +52,7 @@ CREATE TABLE `tabel_guru` (
   `nama_guru` varchar(30) NOT NULL,
   `jenis_kelamin` enum('P','W') NOT NULL,
   PRIMARY KEY (`id_guru`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -61,7 +61,7 @@ CREATE TABLE `tabel_guru` (
 
 LOCK TABLES `tabel_guru` WRITE;
 /*!40000 ALTER TABLE `tabel_guru` DISABLE KEYS */;
-INSERT INTO `tabel_guru` VALUES (0,'2341234','Default','P'),(1,'870470182','Mama Ina','W'),(4,'0183204','Kakak Ira','W');
+INSERT INTO `tabel_guru` VALUES (1,'870470182','Mama Ina','W'),(2,'0183204','Kakak Ira','W'),(3,'2452354','Ayah ujeb','P'),(4,'2525','Adek Iru','P');
 /*!40000 ALTER TABLE `tabel_guru` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -79,13 +79,13 @@ CREATE TABLE `tabel_jadwal` (
   `kelas` int(11) NOT NULL,
   `kd_mapel` varchar(4) NOT NULL,
   `id_guru` int(11) NOT NULL,
-  `jam_mulai` varchar(6) NOT NULL,
-  `jam_selesai` varchar(8) NOT NULL,
+  `jam` varchar(14) DEFAULT NULL,
   `kd_ruangan` varchar(4) NOT NULL,
   `semester` int(11) NOT NULL,
-  `hari` varchar(10) NOT NULL,
+  `hari` varchar(10) DEFAULT NULL,
+  `id_rombel` int(11) NOT NULL,
   PRIMARY KEY (`id_jadwal`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,7 +94,7 @@ CREATE TABLE `tabel_jadwal` (
 
 LOCK TABLES `tabel_jadwal` WRITE;
 /*!40000 ALTER TABLE `tabel_jadwal` DISABLE KEYS */;
-INSERT INTO `tabel_jadwal` VALUES (9,2,'RPL',3,'BID',0,'','','011',1,''),(10,2,'RPL',2,'TIK',0,'','','011',1,''),(11,2,'RPL',2,'MTK',0,'','','011',1,''),(12,2,'RPL',1,'IPA',0,'','','011',1,'');
+INSERT INTO `tabel_jadwal` VALUES (40,2,'RPL',1,'TIK',2,'','01A',1,'',1),(41,2,'RPL',1,'TIK',2,'','01B',1,'',2),(42,2,'RPL',1,'MTK',2,'','011',1,'',1),(43,2,'RPL',1,'MTK',2,'','011',1,'',2),(44,2,'RPL',1,'IPA',2,'','011',1,'',1),(45,2,'RPL',1,'IPA',2,'','011',1,'',2);
 /*!40000 ALTER TABLE `tabel_jadwal` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -257,6 +257,34 @@ INSERT INTO `tabel_menu` VALUES (1,'Database Siswa','siswa','fa fa-users',0),(2,
 UNLOCK TABLES;
 
 --
+-- Table structure for table `tabel_rombel`
+--
+
+DROP TABLE IF EXISTS `tabel_rombel`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tabel_rombel` (
+  `id_rombel` int(11) NOT NULL AUTO_INCREMENT,
+  `nama_rombel` varchar(30) DEFAULT NULL,
+  `kelas` int(11) NOT NULL,
+  `kd_jurusan` varchar(14) DEFAULT NULL,
+  PRIMARY KEY (`id_rombel`),
+  KEY `tabel_rombel_tabel_jurusan_kd_jurusan_fk` (`kd_jurusan`),
+  CONSTRAINT `tabel_rombel_tabel_jurusan_kd_jurusan_fk` FOREIGN KEY (`kd_jurusan`) REFERENCES `tabel_jurusan` (`kd_jurusan`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tabel_rombel`
+--
+
+LOCK TABLES `tabel_rombel` WRITE;
+/*!40000 ALTER TABLE `tabel_rombel` DISABLE KEYS */;
+INSERT INTO `tabel_rombel` VALUES (1,'RPL1A',1,'RPL'),(2,'RPL1B',1,'RPL'),(3,'RPL2A',2,'RPL'),(4,'RPL2B',2,'RPL'),(5,'RPL1C',1,'RPL'),(9,'RPL 3C ',3,'RPL');
+/*!40000 ALTER TABLE `tabel_rombel` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tabel_ruangan`
 --
 
@@ -365,6 +393,42 @@ LOCK TABLES `table_sekolah_info` WRITE;
 INSERT INTO `table_sekolah_info` VALUES (1,'TK Baiturrahim',4,'Jl. Surya Raya, Bekasi','tkbaiturrahim@gmail.com','02123456');
 /*!40000 ALTER TABLE `table_sekolah_info` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Temporary table structure for view `v_master_rombel`
+--
+
+DROP TABLE IF EXISTS `v_master_rombel`;
+/*!50001 DROP VIEW IF EXISTS `v_master_rombel`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `v_master_rombel` (
+  `id_rombel` tinyint NOT NULL,
+  `nama_rombel` tinyint NOT NULL,
+  `kelas` tinyint NOT NULL,
+  `kd_jurusan` tinyint NOT NULL,
+  `nama_jurusan` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Final view structure for view `v_master_rombel`
+--
+
+/*!50001 DROP TABLE IF EXISTS `v_master_rombel`*/;
+/*!50001 DROP VIEW IF EXISTS `v_master_rombel`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_master_rombel` AS select `tr`.`id_rombel` AS `id_rombel`,`tr`.`nama_rombel` AS `nama_rombel`,`tr`.`kelas` AS `kelas`,`tr`.`kd_jurusan` AS `kd_jurusan`,`tj`.`nama_jurusan` AS `nama_jurusan` from (`tabel_rombel` `tr` join `tabel_jurusan` `tj`) where `tj`.`kd_jurusan` = `tr`.`kd_jurusan` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -375,4 +439,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-16 17:03:07
+-- Dump completed on 2023-01-16 16:27:49
