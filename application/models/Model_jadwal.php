@@ -5,7 +5,7 @@ class Model_jadwal extends CI_Model
 	function getJamPelajaran() {
 		$jam_pelajaran = array(
 			'07.15 - 08.00' => '07.15 - 08.00',
-			'08.00 - 08.45' => '08.15 - 08.45',
+			'08.00 - 08.45' => '08.00 - 08.45',
 			'08.45 - 09.30' => '08.45 - 09.30',
 			'09.30 - 10.00' => '09.30 - 10.00',
 			'10.00 - 10.45' => '10.00 - 10.45',
@@ -31,19 +31,22 @@ class Model_jadwal extends CI_Model
 
 		foreach ($kurikulum_detail->result() as $row) {
 //			print_r($row);
-
-			$data = array(
-						'id_tahun_akademik'	=>$tahun_akademik['id_tahun_akademik'],
-						'semester' 			=> $semester,
-						'hari' 				=> '',
-						'kd_jurusan' 		=> $row->kd_jurusan,
-						'kd_mapel' 			=> $row->kd_mapel,
-						'kelas' 			=> $row->kelas,
-						'id_guru' 			=> 0,
-						'jam_mulai' 		=> '',
-						'jam_selesai' 		=> '',
-						'kd_ruangan' 		=> '011');
-			$this->db->insert('tabel_jadwal', $data);
+			// dapatkan rombel base on jurusan dan kelas
+			$rombel = $this->db->get_where('tabel_rombel', array('kd_jurusan'=>$row->kd_jurusan, 'kelas'=>$row->kelas));
+			foreach ($rombel->result() as $row_rombel) {
+				$data = array(
+					'id_tahun_akademik'	=>$tahun_akademik['id_tahun_akademik'],
+					'semester' 			=> $semester,
+					'hari' 				=> '',
+					'kd_jurusan' 		=> $row->kd_jurusan,
+					'kd_mapel' 			=> $row->kd_mapel,
+					'kelas' 			=> $row->kelas,
+					'id_guru' 			=> 2,
+					'jam' 				=> '',
+					'id_rombel'			=> $row_rombel->id_rombel,
+					'kd_ruangan' 		=> '011');
+				$this->db->insert('tabel_jadwal', $data);
+			}
 		}
 	}
 }
