@@ -1,2 +1,0 @@
-insert into akademik.table_sekolah_info (id_sekolah, nama_sekolah, id_jenjang_sekolah, alamat_sekolah, email, Telepon)
-values  (1, 'TK Baiturrahim', 2, 'Jl. Surya Raya, Bekasi', 'tkbaiturrahim@gmail.com', '02123456');
