@@ -154,7 +154,7 @@ class Jadwal extends CI_Controller
 		$jam_ajar = $this->model_jadwal->getJamPelajaran();
 		$no=1;
 		foreach ($jam_ajar as $jam) {
-			$pdf->Cell(10,10,'1',1,0,'L');
+			$pdf->Cell(10,10,$no,1,0,'L');
 			$pdf->Cell(30,10,$jam,1,1,'L');
 			$no++;
 		}
