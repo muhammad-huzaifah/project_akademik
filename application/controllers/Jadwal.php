@@ -132,6 +132,8 @@ class Jadwal extends CI_Controller
 	}
 
 	function cetak_jadwal(){
+		$rombel = $_POST['rombel'];
+		die;
 		$this->load->library('CFPDF');
 		$hari = array(
 			'Senin' => 'Senin',
@@ -155,7 +157,12 @@ class Jadwal extends CI_Controller
 		$no=1;
 		foreach ($jam_ajar as $jam) {
 			$pdf->Cell(10,10,$no,1,0,'L');
-			$pdf->Cell(30,10,$jam,1,1,'L');
+			$pdf->Cell(30,10,$jam,1,0,'L');
+			// foreach hari di kolom jadwal
+			foreach ($hari as $h) {
+				$pdf->Cell(30,10, $this->getPelajaran($jam, $hari, $rombel),1,0,'L');
+			}
+			$pdf->Cell(30,10,'',0,1,'L');
 			$no++;
 		}
 
@@ -163,8 +170,11 @@ class Jadwal extends CI_Controller
 	}
 
 	function getPelajaran($jam, $hari, $rombel) {
-		$where = array('jam'=>$jam, 'hari'=>$hari, 'id_rombel'=>$rombel);
-		$pelajaran = $this->db->get_where('tabel_jadwal', $where);
+//		$where = array('jam'=>$jam, 'hari'=>$hari, 'id_rombel'=>$rombel);
+		$sql = "SELECT tj.*, tm.nama_mapel FROM tabel_jadwal as tj, tabel_mapel as tm
+			   WHERE tj.kd_mapel=tm.kd_mapel and tj.id_rombel=$rombel and tj.hari=$hari and tj.jam=$jam";
+//		$pelajaran = $this->db->get_where('tabel_jadwal', $where);
+		$pelajaran = $this->db->query($sql);
 		if($pelajaran->num_rows()>0) {
 			$row = $pelajaran->row_array();
 			return $pelajaran['nama_mapel'];
@@ -172,5 +182,7 @@ class Jadwal extends CI_Controller
 			return '-';
 		}
 	}
+
+
 
 }
