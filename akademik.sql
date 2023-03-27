@@ -1,6 +1,6 @@
 -- MariaDB dump 10.19  Distrib 10.4.25-MariaDB, for Win64 (AMD64)
 --
--- Host: 127.0.0.1    Database: akademik
+-- Host: localhost    Database: akademik
 -- ------------------------------------------------------
 -- Server version	10.4.25-MariaDB
 
@@ -94,7 +94,7 @@ CREATE TABLE `tabel_jadwal` (
 
 LOCK TABLES `tabel_jadwal` WRITE;
 /*!40000 ALTER TABLE `tabel_jadwal` DISABLE KEYS */;
-INSERT INTO `tabel_jadwal` VALUES (40,2,'RPL',1,'TIK',2,'','01A',1,'',1),(41,2,'RPL',1,'TIK',2,'','01B',1,'',2),(42,2,'RPL',1,'MTK',2,'','011',1,'',1),(43,2,'RPL',1,'MTK',2,'','011',1,'',2),(44,2,'RPL',1,'IPA',2,'','011',1,'',1),(45,2,'RPL',1,'IPA',2,'','011',1,'',2);
+INSERT INTO `tabel_jadwal` VALUES (40,2,'RPL',1,'TIK',3,'','01B',1,'',1),(41,2,'RPL',1,'TIK',2,'','01B',1,'',2),(42,2,'RPL',1,'MTK',2,'','011',1,'',1),(43,2,'RPL',1,'MTK',2,'','011',1,'',2),(44,2,'RPL',1,'IPA',2,'','011',1,'',1),(45,2,'RPL',1,'IPA',2,'','011',1,'',2);
 /*!40000 ALTER TABLE `tabel_jadwal` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -439,4 +439,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-16 16:27:49
+-- Dump completed on 2023-03-27 15:11:03
