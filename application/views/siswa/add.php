@@ -98,6 +98,14 @@
 								<input type="file" name="userfile" class="col-md-3 col-sm-3">
 							</div>
 
+							<div class="item form-group">
+								<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">PILIH ROMBEL<span class="required">*</span>
+								</label>
+								<div class="col-md-6 col-sm-6 ">
+									<?php echo cmb_dinamis ('rombel', 'tabel_rombel', 'nama_rombel', 'id_rombel')?>
+								</div>
+							</div>
+
 							<div class="ln_solid"></div>
 							<div class="item form-group">
 								<div class="col-md-6 col-sm-6 offset-md-3">

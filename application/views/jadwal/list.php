@@ -26,7 +26,7 @@
 										</td>
 									</tr>
 									<tr>
-										<td>Rombel</td>
+										<td>rombel</td>
 										<td><div id="showRombel"></div></td>
 									</tr>
 
@@ -103,7 +103,7 @@
 		// exit;
 		$.ajax( {
 				type:'GET',
-				url:'<?php echo base_url()?>index.php/jadwal/show_rombel',
+				url :'<?php echo base_url() ?>index.php/jadwal/show_rombel',
 				data:'kelas='+kelas+'&jurusan='+jurusan,
 				success:function (html) {
 					$("#showRombel").html(html);

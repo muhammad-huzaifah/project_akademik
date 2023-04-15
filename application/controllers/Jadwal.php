@@ -1,19 +1,18 @@
 <?php
-
 class Jadwal extends CI_Controller
 {
 
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('model_jadwal');
+		$this->load->model('Model_jadwal');
 	}
 
 	function index()
 	{
 		$infoSekolah = "SELECT js.jumlah_kelas
-    				 FROM tabel_jenjang_sekolah as js, table_sekolah_info as si 
-    				 WHERE js.id_jenjang=si.id_jenjang_sekolah ";
+    				 	FROM tabel_jenjang_sekolah as js, table_sekolah_info as si 
+    				 	WHERE js.id_jenjang=si.id_jenjang_sekolah ";
 		$data['info'] = $this->db->query($infoSekolah)->row_array();
 		$this->template->load('template', 'jadwal/list', $data);
 	}
@@ -22,7 +21,7 @@ class Jadwal extends CI_Controller
 	{
 		if (isset($_POST['submit'])) {
 			// lakukan proses
-			$this->model_jadwal->generateJadwal();
+			$this->Model_jadwal->generateJadwal();
 //			die;
 		}
 		redirect('jadwal');
@@ -53,13 +52,13 @@ class Jadwal extends CI_Controller
 						<th>AKSI</th>
 					</tr>				
 				</thead>";
-		$sql = "SELECT tj.id_jadwal, tm.nama_mapel, tg.id_guru, tg.nama_guru, tr.kd_ruangan, tj.hari, tj.jam    
+		$sql = "SELECT tj.hari, tj.id_jadwal, tm.nama_mapel, tg.id_guru, tg.nama_guru, tr.kd_ruangan, tj.hari, tj.jam    
 				FROM tabel_jadwal as tj, tabel_mapel as tm, tabel_ruangan as tr, tabel_guru as tg
-				WHERE tj.kd_mapel=tm.kd_mapel and tj.kd_ruangan=tr.kd_ruangan and tg.id_guru=tj.id_guru and tj.kelas='$kelas' and 
-				      tj.kd_jurusan='$kd_jurusan' and tj.id_rombel='$rombel'";
+				WHERE tj.kd_mapel=tm.kd_mapel and tj.kd_ruangan=tr.kd_ruangan and tg.id_guru=tj.id_guru 
+				  and tj.kelas='$kelas' and tj.kd_jurusan='$kd_jurusan' and tj.id_rombel='$rombel'";
 		$jadwal = $this->db->query($sql)->result();
 		$no = 1;
-		$jam_pelajaran = $this->model_jadwal->getJamPelajaran();
+		$jam_pelajaran = $this->Model_jadwal->getJamPelajaran();
 		$hari = array(
 			'Senin' => 'Senin',
 			'Selasa'=> 'Selasa',
@@ -122,7 +121,7 @@ class Jadwal extends CI_Controller
 	function show_rombel() {
 //		print_r($where);
 //		die;
-		echo "<select id='rombel' class='form-control' onchange='loadPelajaran()'>";
+		echo "<select id='rombel' name='rombel' class='form-control' onchange='loadPelajaran()'>";
 			$where 	= array('kd_jurusan'=>$_GET['jurusan'], 'kelas'=>$_GET['kelas']);
 			$rombel = $this->db->get_where('tabel_rombel', $where);
 			foreach ($rombel->result() as $row) {
@@ -132,10 +131,9 @@ class Jadwal extends CI_Controller
 	}
 
 	function cetak_jadwal(){
-		$rombel = $_POST['rombel'];
-		die;
+//		$rombel = $_POST['rombel'];
 		$this->load->library('CFPDF');
-		$hari = array(
+		$days = array(
 			'Senin' => 'Senin',
 			'Selasa'=> 'Selasa',
 			'Rabu'  => 'Rabu',
@@ -145,44 +143,43 @@ class Jadwal extends CI_Controller
 		);
 		$pdf = new FPDF('L','mm','A4');
 		$pdf->AddPage();
-		$pdf->SetFont('Arial','B',12);
+		$pdf->SetFont('Arial','B',13);
 		$pdf->Cell(10,10,'No',1,0,'L');
 		$pdf->Cell(30,10,'Waktu',1,0,'L');
-		foreach ($hari as $h) {
-			$pdf->Cell(30,10, $h,1,0,'L');
+		// foreach di kolom judul
+		foreach ($days as $day) {
+			$pdf->Cell(30,10, $day,1,0,'L');
 		}
 		$pdf->Cell(30,10,'',0,1,'L');
 
-		$jam_ajar = $this->model_jadwal->getJamPelajaran();
+ 		$jam_ajar = $this->Model_jadwal->getJamPelajaran();
 		$no=1;
 		foreach ($jam_ajar as $jam) {
 			$pdf->Cell(10,10,$no,1,0,'L');
 			$pdf->Cell(30,10,$jam,1,0,'L');
+			$no++;
+
 			// foreach hari di kolom jadwal
-			foreach ($hari as $h) {
-				$pdf->Cell(30,10, $this->getPelajaran($jam, $hari, $rombel),1,0,'L');
+			foreach ($days as $day) {
+//				$pdf->Cell(30,10, $this->getPelajaran($jam, $day, $rombel),1,0,'L');
 			}
 			$pdf->Cell(30,10,'',0,1,'L');
-			$no++;
 		}
-
 		$pdf->Output();
 	}
 
-	function getPelajaran($jam, $hari, $rombel) {
-//		$where = array('jam'=>$jam, 'hari'=>$hari, 'id_rombel'=>$rombel);
-		$sql = "SELECT tj.*, tm.nama_mapel FROM tabel_jadwal as tj, tabel_mapel as tm
-			   WHERE tj.kd_mapel=tm.kd_mapel and tj.id_rombel=$rombel and tj.hari=$hari and tj.jam=$jam";
-//		$pelajaran = $this->db->get_where('tabel_jadwal', $where);
+	function getPelajaran($jam,$day,$rombel) {
+//		die;
+		$sql = "SELECT tj.*, tm.nama_mapel 
+				FROM tabel_jadwal as tj, tabel_mapel as tm
+			   	WHERE tj.kd_mapel=tm.kd_mapel and tj.id_rombel='$rombel' and tj.hari='$day' and tj.jam='$jam'";
 		$pelajaran = $this->db->query($sql);
 		if($pelajaran->num_rows()>0) {
 			$row = $pelajaran->row_array();
-			return $pelajaran['nama_mapel'];
+			return $row['nama_mapel'];
 		} else {
 			return '-';
 		}
 	}
-
-
 
 }

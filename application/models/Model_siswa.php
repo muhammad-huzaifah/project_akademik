@@ -12,10 +12,21 @@ class Model_siswa extends CI_Model
 			'tanggal_lahir'	=>$this->input->post('tanggal_lahir', TRUE),
 			'tempat_lahir'	=>$this->input->post('tempat_lahir', TRUE),
 			'gender' 		=>$this->input->post('gender', TRUE),
-			'foto' 			=> $foto
+			'foto' 			=> $foto,
+			'id_rombel'		=>$this->input->post('rombel', TRUE)
 		);
 //		print_r($data);
 		$this->db->insert($this->table, $data);
+
+		$tahun_akademik = $this->db->get_where('tabel_tahun_akademik', array('is_aktif'=>'y'))->row_array();
+
+		$history = array(
+			'nim'				=>$this->input->post('nim', TRUE),
+			'id_tahun_akademik'	=>$tahun_akademik['id_tahun_akademik'],
+			'id_rombel'			=>$this->input->post('rombel', TRUE)
+		);
+
+		$this->db->insert('tabel_history_kelas',$history);
 	}
 
 	function update($foto) {
@@ -36,7 +47,8 @@ class Model_siswa extends CI_Model
 				'tanggal_lahir' => $this->input->post('tanggal_lahir', TRUE),
 				'tempat_lahir' 	=> $this->input->post('tempat_lahir', TRUE),
 				'gender' 		=> $this->input->post('gender', TRUE),
-				'foto' 			=> $foto
+				'foto' 			=> $foto,
+				'id_rombel'		=>$this->input->post('rombel', TRUE)
 			);
 		}
 

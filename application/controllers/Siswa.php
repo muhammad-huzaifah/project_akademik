@@ -103,6 +103,10 @@ class Siswa extends CI_Controller
 		return $upload['file_name'];
 	}
 
+	function siswa_aktif() {
+		$this->template->load('template', 'siswa/siswa_aktif');
+	}
+
 
 }
 
