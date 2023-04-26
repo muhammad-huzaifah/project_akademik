@@ -107,5 +107,14 @@ class Siswa extends CI_Controller
 		$this->template->load('template', 'siswa/siswa_aktif');
 	}
 
+	function load_data_siswa_by_rombel() {
+		echo 	"<table class='table table-bordered'>
+					<tr>
+						<th>NIM</th>
+						<th>Nama</th>
+					</tr>
+				</table>";
+	}
+
 }
 

@@ -16,15 +16,6 @@
 
 							<div class="col-sm-7">
 								<h2>Data Siswa</h2>
-								<table id="mytable" class="table table-striped table-bordered dataTable" style="width: 100%" role="grid">
-									<thead>
-									<tr>
-										<th>NO</th>
-										<th>NIM</th>
-										<th>NAMA</th>
-									</tr>
-									</thead>
-								</table>
 								<div id="dataSiswa"></div>
 							</div>
 						</div>
@@ -40,53 +31,40 @@
 
 <script type="text/javascript">
 	$(document).ready(function () {
-			loadData();
+			// loadData();
+			loadRombel();
+			loadSiswa();
 		}
 	);
 </script>
 
 <script type="text/javascript">
-	function loadData() {
-		var jurusan = $("#jurusan").val();
-		// alert(jurusan);
-		// exit;
-		$.ajax( {
-				type:'GET',
-				url:'<?php echo base_url()?>index.php/rombel/show_combobox_rombel_by_jurusan',
-				data:'jurusan='+jurusan,
-				success:function(html) {
-					$("#rombel").html(html);
+	// function loadData() {
+		function loadRombel() {
+			var jurusan = $("#jurusan").val();
+			// alert(jurusan);
+			// exit;
+			$.ajax( {
+					type:'GET',
+					url:'<?php echo base_url()?>index.php/rombel/show_combobox_rombel_by_jurusan',
+					data:'jurusan='+jurusan,
+					success:function(html) {
+						$("#rombel").html(html);
+					}
 				}
-			}
-		)
-	}
-</script>
+			)
+		}
 
-
-<script>
-	$(document).ready(function() {
-		var t = $('#mytable').DataTable( {
-			"ajax": '<?php echo site_url('siswa/data'); ?>//',
-			"order": [[ 2, 'asc' ]],
-			"columns": [
-				{
-					"data": null,
-					"width": "50px",
-					"sClass": "text-center"
-				},
-				{
-					"data": "nim",
-					"width": "120px",
-					"sClass": "text-center"
-				},
-				{ "data": "nama", "width": "100px" },
-			]
-		} );
-
-		t.on( 'order.dt search.dt', function () {
-			t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-				cell.innerHTML = i+1;
-			} );
-		} ).draw();
-	} );
+		function loadSiswa() {
+			// alert('ujeb');
+			$.ajax( {
+					type:'GET',
+					url:'<?php echo base_url()?>index.php/siswa/load_data_siswa_by_rombel',
+					// data:'jurusan='+jurusan,
+					success:function(html) {
+						$("#dataSiswa").html(html);
+					}
+				}
+			)
+		}
 </script>
