@@ -9,8 +9,8 @@
 							<div class="col-sm-5">
 								<h2>Filter Data</h2>
 								<table class="table table-striped table-bordered dataTable" style="width: 100%" role="grid">
-									<tr><td>Jurusan</td><td><?php echo cmb_dinamis('jurusan', 'tabel_jurusan', 'nama_jurusan', 'kd_jurusan');?></td></tr>
-									<tr><td>Rombel</td><td><?php echo cmb_dinamis('jurusan', 'tabel_jurusan', 'nama_jurusan', 'kd_jurusan', null, "id='jurusan'")?></td></tr>
+									<tr><td>Jurusan</td><td><?php echo cmb_dinamis('jurusan', 'tabel_jurusan', 'nama_jurusan', 'kd_jurusan', null, "id='jurusan' onchange='loadData()'");?></td></tr>
+									<tr><td>Rombel</td><td><div id="rombel"></div></td></tr>
 								</table>
 							</div>
 
@@ -25,6 +25,7 @@
 									</tr>
 									</thead>
 								</table>
+								<div id="dataSiswa"></div>
 							</div>
 						</div>
 					</div>
@@ -47,33 +48,31 @@
 <script type="text/javascript">
 	function loadData() {
 		var jurusan = $("#jurusan").val();
-		alert(jurusan);
-		exit;
+		// alert(jurusan);
+		// exit;
 		$.ajax( {
 				type:'GET',
-				url:'<?php echo base_url()?>index.php/jadwal/dataJadwal',
-				data:'jurusan='+jurusan+'&kelas='+kelas+'&id_kurikulum=<?php echo $this->uri->segment(3)?>',
+				url:'<?php echo base_url()?>index.php/rombel/show_combobox_rombel_by_jurusan',
+				data:'jurusan='+jurusan,
 				success:function(html) {
-					$("#tabel").html(html);
+					$("#rombel").html(html);
 				}
 			}
 		)
 	}
-
 </script>
 
 
 <script>
 	$(document).ready(function() {
 		var t = $('#mytable').DataTable( {
-			"ajax": '<?php echo site_url('siswa/data'); ?>',
+			"ajax": '<?php echo site_url('siswa/data'); ?>//',
 			"order": [[ 2, 'asc' ]],
 			"columns": [
 				{
 					"data": null,
 					"width": "50px",
-					"sClass": "text-center",
-					"orderable": false,
+					"sClass": "text-center"
 				},
 				{
 					"data": "nim",

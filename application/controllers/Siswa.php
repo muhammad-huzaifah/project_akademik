@@ -107,6 +107,5 @@ class Siswa extends CI_Controller
 		$this->template->load('template', 'siswa/siswa_aktif');
 	}
 
-
 }
 
