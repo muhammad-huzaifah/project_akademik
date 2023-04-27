@@ -1,6 +1,6 @@
 -- MariaDB dump 10.19  Distrib 10.4.25-MariaDB, for Win64 (AMD64)
 --
--- Host: localhost    Database: akademik
+-- Host: 127.0.0.1    Database: akademik
 -- ------------------------------------------------------
 -- Server version	10.4.25-MariaDB
 
@@ -323,6 +323,7 @@ CREATE TABLE `tabel_siswa` (
   `tempat_lahir` varchar(30) DEFAULT NULL,
   `kd_agama` varchar(2) NOT NULL,
   `foto` text DEFAULT NULL,
+  `id_rombel` int(11) NOT NULL,
   PRIMARY KEY (`nim`),
   KEY `foreign_key_name` (`kd_agama`),
   CONSTRAINT `tabel_siswa_ibfk_1` FOREIGN KEY (`kd_agama`) REFERENCES `tabel_agama` (`kd_agama`)
@@ -335,7 +336,7 @@ CREATE TABLE `tabel_siswa` (
 
 LOCK TABLES `tabel_siswa` WRITE;
 /*!40000 ALTER TABLE `tabel_siswa` DISABLE KEYS */;
-INSERT INTO `tabel_siswa` VALUES ('T102137','Rina','W','2022-12-15','Jakarta','01','IMG_20220626_122031.jpg'),('T102138','Khaira Bishry','W','2022-12-22','Medan','01','1077926.jpg'),('T120139','MUHAMMAD HUZAIFAH, S.Kom.','P','2022-12-13','Medan','01','pas_photo_terbaru.jpg'),('TIM102317','Abang Ujeb keren','P','2022-12-15','Medan','01','IMG_20220626_122319.jpg'),('TIM102318','Muhammad Khairu Mubarak Huzaifah','P','2022-12-04','Bekasi','01','IMG_20220827_073532.jpg');
+INSERT INTO `tabel_siswa` VALUES ('T102137','Rina','W','2022-12-15','Jakarta','01','IMG_20220626_122031.jpg',1),('T102138','Khaira Bishry','W','2022-12-22','Medan','01','1077926.jpg',1),('T120139','MUHAMMAD HUZAIFAH, S.Kom.','P','2022-12-13','Medan','01','pas_photo_terbaru.jpg',1),('TIM102317','Abang Ujeb keren','P','2022-12-15','Medan','01','IMG_20220626_122319.jpg',1),('TIM102318','Muhammad Khairu Mubarak Huzaifah','P','2022-12-04','Bekasi','01','IMG_20220827_073532.jpg',1);
 /*!40000 ALTER TABLE `tabel_siswa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -439,4 +440,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-27 15:11:03
+-- Dump completed on 2023-04-26 16:31:20

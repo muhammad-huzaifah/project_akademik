@@ -108,12 +108,16 @@ class Siswa extends CI_Controller
 	}
 
 	function load_data_siswa_by_rombel() {
-		echo 	"<table class='table table-bordered'>
-					<tr>
-						<th>NIM</th>
-						<th>Nama</th>
-					</tr>
-				</table>";
+		$rombel = $_GET['rombel'];
+
+		echo "<table class='table table-bordered'>
+					<tr><th style='width: 100px'>NIM</th><th>Nama</th></tr>";
+		$this->db->where('id_rombel', $rombel);
+		$siswa = $this->db->get('tabel_siswa');
+		foreach ($siswa->result() as $row) {
+			echo "<tr><td>$row->nim</td><td>$row->nama</td></tr>";
+		}
+		echo "</table>";
 	}
 
 }

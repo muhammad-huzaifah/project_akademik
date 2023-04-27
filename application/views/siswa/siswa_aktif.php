@@ -33,7 +33,6 @@
 	$(document).ready(function () {
 			// loadData();
 			loadRombel();
-			loadSiswa();
 		}
 	);
 </script>
@@ -50,17 +49,20 @@
 					data:'jurusan='+jurusan,
 					success:function(html) {
 						$("#rombel").html(html);
+						loadSiswa(rombel);
 					}
 				}
 			)
 		}
 
-		function loadSiswa() {
+		function loadSiswa(rombel) {
+			var rombel = $("#rombel2").val();
+
 			// alert('ujeb');
 			$.ajax( {
 					type:'GET',
 					url:'<?php echo base_url()?>index.php/siswa/load_data_siswa_by_rombel',
-					// data:'jurusan='+jurusan,
+					data:'rombel='+rombel,
 					success:function(html) {
 						$("#dataSiswa").html(html);
 					}
