@@ -8,10 +8,13 @@
 						<div class="row">
 							<div class="col-sm-5">
 								<h2>Filter Data</h2>
-								<table class="table table-striped table-bordered dataTable" style="width: 100%" role="grid">
-									<tr><td>Jurusan</td><td><?php echo cmb_dinamis('jurusan', 'tabel_jurusan', 'nama_jurusan', 'kd_jurusan', null, "id='jurusan' onchange='loadData()'");?></td></tr>
-									<tr><td>Rombel</td><td><div id="rombel"></div></td></tr>
-								</table>
+								<?php echo form_open('siswa/data_by_rombel_excel'); ?>
+									<table class="table table-striped table-bordered dataTable" style="width: 100%" role="grid">
+										<tr><td>Jurusan</td><td><?php echo cmb_dinamis('jurusan', 'tabel_jurusan', 'nama_jurusan', 'kd_jurusan', null, "id='jurusan' onchange='loadData()'");?></td></tr>
+										<tr><td>Rombel</td><td><div id="rombel"></div></td></tr>
+										<tr><td></td><td><button type="submit" class="btn btn-danger btn-sm">Export Data</button></td></tr>
+									</table>
+								</form>
 							</div>
 
 							<div class="col-sm-7">

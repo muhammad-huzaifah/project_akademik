@@ -120,4 +120,24 @@ class Siswa extends CI_Controller
 		echo "</table>";
 	}
 
+	function data_by_rombel_excel() {
+		$this->load->library('CPHPEXCEL');
+		$objPHPExcel = new PHPExcel();
+		$objPHPExcel->getActiveSheet()->setCellValue('A1', 'NIM');
+		$objPHPExcel->getActiveSheet()->setCellValue('B1', 'SISWA');
+		$rombel = $_POST['rombel'];
+		$this->db->where('id_rombel', $rombel);
+
+		$siswa = $this->db->get('tabel_siswa');
+		$no=2;
+		foreach ($siswa->result() as $row) {
+			$objPHPExcel->getActiveSheet()->setCellValue('A'.$no, $row->nim);
+			$objPHPExcel->getActiveSheet()->setCellValue('B'.$no, $row->nama);
+			$no++;
+		}
+
+		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+		$objWriter->save("datamahasiswa.xlsx");
+	}
+
 }
