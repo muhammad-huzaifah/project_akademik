@@ -137,7 +137,9 @@ class Siswa extends CI_Controller
 		}
 
 		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-		$objWriter->save("datamahasiswa.xlsx");
+		$objWriter->save("data-siswa.xlsx");
+		$this->load->helper('download');
+		force_download('data-siswa.xlsx', NULL);
 	}
 
 }
