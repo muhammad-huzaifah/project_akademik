@@ -11,3 +11,10 @@ function cmb_dinamis($name, $table, $field, $pk, $selected=null, $extra=null) {
 	$cmb .= "</select>";
 	return $cmb;
 }
+
+function get_tahun_akademik_aktif($field) {
+	$ci = & get_instance();
+	$ci->db->where('is_aktif', 'y');
+	$tahun = $ci->db->get('tabel_tahun_akademik')->row_array();
+	return $tahun[$field];
+}
