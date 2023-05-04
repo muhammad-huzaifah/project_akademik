@@ -27,7 +27,7 @@
 						<div class="row">
 							<div class="col-sm-12">
 								<table class="table table-bordered">
-									<tr><td style="width: 200px">TAHUN AKADEMIK</td><td>: <?php echo get_tahun_akademik_aktif('tahun_akademik') ?></td></tr>
+									<tr><td style="width: 200px">TAHUN AKADEMIK</td><td>:  <?php echo get_tahun_akademik_aktif('tahun_akademik') ?></td></tr>
 									<tr><td>SEMESTER</td><td>: <?php echo get_tahun_akademik_aktif('semester_aktif') ?></td></tr>
 								</table>
 							</div>
@@ -37,9 +37,10 @@
 									<thead>
 									<tr>
 										<th>NO</th>
-										<th>KODE MAPEL</th>
-										<th>NAMA MATA PELAJARAN</th>
-										<th>AKSI</th>
+										<th>ROMBEL</th>
+										<th>NAMA JURUSAN</th>
+										<th>KELAS</th>
+										<th>NAMA WALIKELAS</th>
 									</tr>
 									</thead>
 								</table>
@@ -62,7 +63,7 @@
 <script>
 	$(document).ready(function() {
 		var t = $('#mytable').DataTable( {
-			"ajax": '<?php echo site_url('mapel/data'); ?>',
+			"ajax": '<?php echo site_url('walikelas/data'); ?>',
 			"order": [[ 2, 'asc' ]],
 			"columns": [
 				{
@@ -71,13 +72,11 @@
 					"sClass": "text-center",
 					"orderable": false,
 				},
-				{
-					"data": "kd_mapel",
-					"width": "50px",
-					"sClass": "text-center"
-				},
-				{ "data": "nama_mapel", "width": "200px" },
-				{ "data": "aksi", "width": "200px" },
+
+				{ "data": "nama_rombel", "width": "200px" },
+				{ "data": "nama_jurusan", "width": "200px" },
+				{ "data": "kelas", "width": "100px" },
+				{ "data": "nama_guru", "width": "200px" },
 			]
 		} );
 
