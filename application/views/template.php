@@ -26,10 +26,10 @@
 
 	<link href="https://colorlib.com/polygon/build/css/custom.min.css" rel="stylesheet">
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.13.4/jquery.min.js"></script>
 
 	<meta name="robots" content="index, nofollow">
-	<script nonce="69429be2-da0f-428b-98b0-1e5c100b7e62">(function (w, d) {
+	<!--<script nonce="69429be2-da0f-428b-98b0-1e5c100b7e62">(function (w, d) {
 			!function (cM, cN, cO, cP) {
 				cM.zarazData = cM.zarazData || {};
 				cM.zarazData.executed = [];
@@ -76,7 +76,7 @@
 				};
 				["complete", "interactive"].includes(cN.readyState) ? zaraz.init() : cM.addEventListener("DOMContentLoaded", zaraz.init)
 			}(w, d, 0, "script");
-		})(window, document);</script>
+		})(window, document);</script>-->
 </head>
 <body class="nav-md">
 <div class="container body">
@@ -314,9 +314,9 @@ Film festivals used to be do-or-die moments for movie makers. They were where...
 <script src="https://colorlib.com/polygon/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
 <script src="https://colorlib.com/polygon/build/js/custom.min.js"></script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vaafb692b2aea4879b33c060e79fe94621666317369993"
+<!--<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vaafb692b2aea4879b33c060e79fe94621666317369993"
 		integrity="sha512-0ahDYl866UMhKuYcW078ScMalXqtFJggm7TmlUtp0UlD4eQk0Ixfnm5ykXKvGJNFjLMoortdseTfsRT8oCfgGA=="
 		data-cf-beacon='{"rayId":"77171b8b2fe67d1f","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2022.11.3","si":100}'
-		crossorigin="anonymous"></script>
+		crossorigin="anonymous"></script>-->
 </body>
 </html>

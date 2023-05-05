@@ -60,6 +60,22 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.bootstrap.min.css"></script>
 
 
+<script type="text/javascript">
+	function updateDataWalikelas(id_walikelas) {
+		var id_guru = $("#guru"+id_walikelas).val();
+		// alert(id_guru);
+		// exit;
+		$.ajax( {
+				type:'GET',
+				url :'<?php echo base_url() ?>index.php/walikelas/updateWalikelas',
+				data:'id_walikelas='+id_walikelas+'&id_guru='+id_guru,
+				success:function (html) {
+				}
+			}
+		)
+	}
+</script>
+
 <script>
 	$(document).ready(function() {
 		var t = $('#mytable').DataTable( {

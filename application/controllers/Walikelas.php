@@ -19,10 +19,12 @@ class Walikelas extends CI_Controller
 			array('db' => 'nama_rombel','dt'=> 'nama_rombel'),
 			array('db' => 'nama_jurusan','dt'=> 'nama_jurusan'),
 			array('db' => 'kelas','dt'=> 'kelas'),
-			array('db' => 'nama_guru',
-				'dt' => 'nama_guru', 'formatter' => function($d)
+			array('db' => 'id_walikelas',
+				  'dt' => 'nama_guru',
+				  'formatter' => function($d)
 			{
-				return cmb_dinamis('guru', 'tabel_guru', 'nama_guru', 'nama_guru', $d);
+				$walikelas = $this->db->get_where('tabel_walikelas', array('id_walikelas'=>$d))->row_array();
+				return cmb_dinamis('guru', 'tabel_guru', 'nama_guru', 'id_guru', $walikelas['id_guru'], "id='guru$d' onchange='updateDataWalikelas($d)'");
 			}),
 		);
 
@@ -44,4 +46,12 @@ class Walikelas extends CI_Controller
 	function index() {
 		$this->template->load('template', 'walikelas/list');
 	}
+
+	function updatewalikelas() {
+		$id_walikelas = $_GET['id_walikelas'];
+		$id_guru = $_GET['id_guru'];
+		$this->db->where('id_walikelas', $id_walikelas);
+		$this->db->update('tabel_walikelas', array('id_guru'=>$id_guru));
+	}
+
 }
