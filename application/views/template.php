@@ -26,7 +26,7 @@
 
 	<link href="https://colorlib.com/polygon/build/css/custom.min.css" rel="stylesheet">
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.13.4/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
 	<meta name="robots" content="index, nofollow">
 	<!--<script nonce="69429be2-da0f-428b-98b0-1e5c100b7e62">(function (w, d) {
