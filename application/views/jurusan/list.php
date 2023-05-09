@@ -49,7 +49,7 @@
 <!--<script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.js"></script>-->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.bootstrap.min.css"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.bootstrap.min.css"></script>-->
 
 
 <script>

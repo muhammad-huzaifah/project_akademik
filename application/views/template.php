@@ -27,6 +27,7 @@
 	<link href="https://colorlib.com/polygon/build/css/custom.min.css" rel="stylesheet">
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<!--	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.21/jquery.min.js"></script>-->
 
 	<meta name="robots" content="index, nofollow">
 	<!--<script nonce="69429be2-da0f-428b-98b0-1e5c100b7e62">(function (w, d) {
@@ -96,7 +97,7 @@
 					</div>
 					<div class="profile_info">
 						<span>Welcome,</span>
-						<h2>Abang Ujeb</h2>
+						<h2><?php echo $this->session->userdata('nama_lengkap') ;?></h2>
 					</div>
 				</div>
 
@@ -169,7 +170,7 @@
 						<li class="nav-item dropdown open" style="padding-left: 15px;">
 							<a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true"
 							   id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-								<img src="https://colorlib.com/polygon/gentelella/images/img.jpg" alt="">Abang Ujeb
+								<img src="https://colorlib.com/polygon/gentelella/images/img.jpg" alt=""><?php echo $this->session->userdata('nama_lengkap')?>
 							</a>
 							<div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item" href="javascript:;"> Profile</a>
@@ -178,8 +179,8 @@
 									<span>Settings</span>
 								</a>
 								<a class="dropdown-item" href="javascript:;">Help</a>
-								<a class="dropdown-item" href="https://colorlib.com/polygon/gentelella/login.html"><i
-											class="fa fa-sign-out pull-right"></i> Log Out</a>
+								<a class="dropdown-item" <?php echo anchor('auth/logout', '<i class="fa fa-sign-out pull-right"></i> Log Out'); ?>>
+								</a>
 							</div>
 						</li>
 						<li role="presentation" class="nav-item dropdown open">

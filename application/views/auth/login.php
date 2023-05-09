@@ -79,10 +79,10 @@
 					<h1>Login Form</h1>
 					<h1>Sistem Informasi Akademik</h1>
 					<div>
-						<input type="text" class="form-control" placeholder="Username" required=""/>
+						<input type="text" class="form-control" name="username" placeholder="Username" required=""/>
 					</div>
 					<div>
-						<input type="password" class="form-control" placeholder="Password" required=""/>
+						<input type="password" class="form-control" name="password" placeholder="Password" required=""/>
 					</div>
 					<div>
 						<button type="submit" name="submit" class="btn btn-danger">

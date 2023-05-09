@@ -17,11 +17,25 @@ class auth extends CI_Controller {
             $username = $this->input->post('username');
             $password = $this->input->post('password');
             $result = $this->Model_user->checkLogin($username, $password);
+			if (!empty($result)) {
+//				echo " Login sukses ";
+				$this->session->set_userdata($result);
+				redirect('siswa');
+			} else {
+//				echo "gagal login";
+				redirect('auth');
+			}
             print_r($result);
         } else {
             redirect('auth');
         }
     }
+
+	function logout()
+	{
+		$this->session->sess_destroy();
+		redirect('auth');
+	}
 
 }
 
