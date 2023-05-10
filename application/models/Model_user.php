@@ -6,7 +6,7 @@ class Model_user extends CI_Model
     {
         $this->db->where('username', $username);
         $this->db->where('password', md5($password));
-        $user = $this->db->get('tabel_user')->row_array();
+        $user = $this->db->get('v_tabel_user')->row_array();
         return $user;
     }
 }
