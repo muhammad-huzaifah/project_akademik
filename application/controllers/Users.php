@@ -49,7 +49,8 @@ class Users extends CI_Controller
 	function add(){
 		if (isset($_POST['submit'])) {
 //			echo "save";
-			$this->Model_user->save();
+            $uploadFoto = $this->uploads_foto_user();
+			$this->Model_user->save($uploadFoto);
 			redirect('users');
 		} else {
 			$this->template->load('template', 'users/add');
@@ -58,11 +59,12 @@ class Users extends CI_Controller
 
 	function edit() {
 	if (isset($_POST['submit'])){
-		$this->Model_user->update();
+		$uploadFoto = $this->uploads_foto_user();
+		$this->Model_user->update($uploadFoto);
 		redirect('users');
 	}else {
-		$edit 			= $this->uri->segment(3);
-		$data['users'] 	= $this->db->get_where('tabel_users', array('kd_users'=>$edit))->row_array();
+		$id_user 		= $this->uri->segment(3);
+		$data['user'] 	= $this->db->get_where('tabel_user', array('id_user'=>$id_user))->row_array();
 		$this->template->load('template', 'users/edit', $data);
 	}
 	}
@@ -70,11 +72,24 @@ class Users extends CI_Controller
 	function delete() {
 		$edit = $this->uri->segment(3);
 		if (!empty($edit)) {
-			$this->db->where('kd_users', $edit);
-			$this->db->delete('tabel_users');
+			$this->db->where('id_user', $edit);
+			$this->db->delete('tabel_user');
 		}
 		redirect('users');
 	}
+
+    function uploads_foto_user() {
+        $config['upload_path']          = './uploads/foto_user/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 11024;
+        $this->load->library('upload', $config);
+        // proses upload
+        $this->upload->do_upload('userfile');
+//		$data = array('upload_data' => $this->upload->data());
+//		print_r($data);
+        $upload = $this->upload->data();
+        return $upload['file_name'];
+    }
 
 
 }

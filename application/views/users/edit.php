@@ -2,7 +2,7 @@
 	<div class="">
 		<div class="page-title">
 			<div class="title_left">
-				<h3>Formulir Edit Mata Pelajaran</h3>
+				<h3>Formulir Edit Users</h3>
 			</div>
 		</div>
 		<div class="clearfix"></div>
@@ -30,35 +30,52 @@
 					<div class="x_content">
 						<br>
 
-							<?php
-								echo form_open('mapel/edit', 'id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate=""');
-								echo form_hidden('kd_mapel', $mapel['kd_mapel']);
-							?>
-							<div class="item form-group">
-								<label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">KODE MATA PELAJARAN<span class="required">*</span>
-								</label>
-								<div class="col-md-6 col-sm-6 ">
-									<input type="text" value="<?php echo $mapel['kd_mapel'];?>" readonly="" placeholder="Masukkan Kode Mata Pelajaran" name="kd_mapel" required="required" class="form-control ">
-								</div>
+						<?php
+						echo form_open('users/edit', 'id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate=""');
+						echo form_hidden('id_user', $user['id_user']);
+						?>
+						<div class="item form-group">
+							<label class="col-form-label col-md-3 col-sm-3 label-align">NAMA LENGKAP<span class="required">*</span>
+							</label>
+							<div class="col-md-6 col-sm-6 ">
+								<input type="text" name="nama_lengkap" value="<?php echo $user ['nama_lengkap'] ;?>" placeholder="Masukkan Nama Lengkap" required="required" class="form-control ">
 							</div>
+						</div>
 
-							<div class="item form-group">
-								<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">NAMA MATA PELAJARAN<span class="required">*</span>
-								</label>
-								<div class="col-md-6 col-sm-6 ">
-									<input type="text" value="<?php echo $mapel['nama_mapel'];?>" name="nama_mapel" placeholder="Masukkan Nama Mata Pelajaran" id="last-name" name="last-name" required="required" class="form-control">
-								</div>
+						<div class="item form-group">
+							<label class="col-form-label col-md-3 col-sm-3 label-align">USER<span class="required">*</span>
+							</label>
+							<div class="col-md-6 col-sm-6 ">
+								<input type="text" name="username" value="<?php echo $user ['username'] ;?>" placeholder="Masukkan username" required="required" class="form-control">
 							</div>
+						</div>
 
-							<div class="ln_solid"></div>
-							<div class="item form-group">
-								<div class="col-md-6 col-sm-6 offset-md-3">
-									<?php
-										echo anchor('mapel', 'Kembali', array('class'=>'btn btn-primary'));
-									?>
-									<button type="submit" name="submit" class="btn btn-success">Simpan</button>
-								</div>
+						<div class="item form-group">
+							<label class="col-form-label col-md-3 col-sm-3 label-align">LEVEL USER<span class="required">*</span>
+							</label>
+							<div class="col-md-6 col-sm-6 ">
+								<?php
+								echo cmb_dinamis('id_level_user', 'tabel_level_user', 'nama_level', 'id_level_user', $user['id_level_user'])
+								;?>
 							</div>
+						</div>
+
+						<div class="item form-group">
+							<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">FOTO <span class="required">*</span>
+							</label>
+							<input type="file" name="userfile" class="col-md-3 col-sm-3">
+							<img src="<?php echo base_url().'uploads/foto_user'.$user['foto'] ;?>" alt="">
+						</div>
+
+						<div class="ln_solid"></div>
+						<div class="item form-group">
+							<div class="col-md-6 col-sm-6 offset-md-3">
+								<?php
+								echo anchor('users', 'Kembali', array('class'=>'btn btn-primary'));
+								?>
+								<button type="submit" name="submit" class="btn btn-success">Simpan</button>
+							</div>
+						</div>
 						</form>
 					</div>
 				</div>

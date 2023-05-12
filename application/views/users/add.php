@@ -31,29 +31,53 @@
 						<br>
 
 							<?php
-								echo form_open('mapel/add', 'id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate=""');
+								echo form_open('users/add', 'id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate=""');
 							?>
 							<div class="item form-group">
-								<label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">NAMA LENGKAP<span class="required">*</span>
+								<label class="col-form-label col-md-3 col-sm-3 label-align">NAMA LENGKAP<span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 ">
-									<input type="text" name="nama_lengkap" placeholder="Masukkan Nama Lengkap" id="first-name" required="required" class="form-control ">
+									<input type="text" name="nama_lengkap" placeholder="Masukkan Nama Lengkap" required="required" class="form-control ">
 								</div>
 							</div>
 
 							<div class="item form-group">
-								<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">LEVEL<span class="required">*</span>
+								<label class="col-form-label col-md-3 col-sm-3 label-align">USER<span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 ">
-									<input type="text" name="nama_level" placeholder="Masukkan Level" id="last-name" name="last-name" required="required" class="form-control">
+									<input type="text" name="username" placeholder="Masukkan username" required="required" class="form-control">
 								</div>
+							</div>
+
+							<div class="item form-group">
+								<label class="col-form-label col-md-3 col-sm-3 label-align" >PASSWORD<span class="required">*</span>
+								</label>
+								<div class="col-md-6 col-sm-6 ">
+									<input type="password" name="password" placeholder="Masukkan password" required="required" class="form-control">
+								</div>
+							</div>
+
+							<div class="item form-group">
+								<label class="col-form-label col-md-3 col-sm-3 label-align">LEVEL USER<span class="required">*</span>
+								</label>
+								<div class="col-md-6 col-sm-6 ">
+									<?php
+									echo cmb_dinamis('id_level_user', 'tabel_level_user', 'nama_level', 'id_level_user')
+									;?>
+								</div>
+							</div>
+
+							<div class="item form-group">
+								<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">FOTO <span class="required">*</span>
+								</label>
+								<input type="file" name="userfile" class="col-md-3 col-sm-3">
 							</div>
 
 							<div class="ln_solid"></div>
 							<div class="item form-group">
 								<div class="col-md-6 col-sm-6 offset-md-3">
 									<?php
-										echo anchor('mapel', 'Kembali', array('class'=>'btn btn-primary'));
+										echo anchor('users', 'Kembali', array('class'=>'btn btn-primary'));
 									?>
 									<button type="submit" name="submit" class="btn btn-success">Simpan</button>
 								</div>
