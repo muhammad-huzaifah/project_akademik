@@ -10,7 +10,7 @@ class Model_user extends CI_Model
 //        return $user;
 //    }
 
-    public $table = "tabel_user";
+    public $table = 'tabel_user';
 
     function save ($foto) {
         $data = array (
@@ -18,8 +18,9 @@ class Model_user extends CI_Model
             'username'      => $this->input->post('username', TRUE),
             'password'      => md5($this->input->post('password', TRUE)),
             'id_level_user' => $this->input->post('id_level_user', TRUE),
-            'foto'          => $foto
+            'foto'          => $foto,
         );
+//        print_r($data);
         $this->db->insert($this->table, $data);
     }
 

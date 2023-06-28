@@ -2,7 +2,7 @@
 	<div class="">
 		<div class="page-title">
 			<div class="title_left">
-				<h3>Formulir Tambah Users</h3>
+				<h3>Formulir Tambah Menu</h3>
 			</div>
 		</div>
 		<div class="clearfix"></div>
@@ -31,53 +31,53 @@
 						<br>
 
 							<?php
-								echo form_open_multipart('users/add', 'id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate=""');
+								echo form_open('menu/add', 'id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate=""');
 							?>
 							<div class="item form-group">
-								<label class="col-form-label col-md-3 col-sm-3 label-align">NAMA LENGKAP<span class="required">*</span>
+								<label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">NAMA MENU<span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 ">
-									<input type="text" name="nama_lengkap" placeholder="Masukkan Nama Lengkap" required="required" class="form-control ">
+									<input type="text" name="nama menu" placeholder="Masukkan Nama Menu" id="first-name" required="required" class="form-control ">
 								</div>
 							</div>
 
 							<div class="item form-group">
-								<label class="col-form-label col-md-3 col-sm-3 label-align">USER<span class="required">*</span>
+								<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">LINK<span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 ">
-									<input type="text" name="username" placeholder="Masukkan username" required="required" class="form-control">
+									<input type="text" name="link" placeholder="Masukkan Link" id="last-name" name="last-name" required="required" class="form-control">
 								</div>
 							</div>
 
 							<div class="item form-group">
-								<label class="col-form-label col-md-3 col-sm-3 label-align" >PASSWORD<span class="required">*</span>
+								<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">ICON<span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 ">
-									<input type="password" name="password" placeholder="Masukkan password" required="required" class="form-control">
+									<input type="text" name="icon" placeholder="Masukkan Kode Icon" id="last-name" name="last-name" required="required" class="form-control">
 								</div>
 							</div>
 
 							<div class="item form-group">
-								<label class="col-form-label col-md-3 col-sm-3 label-align">LEVEL USER<span class="required">*</span>
+								<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">IS MAIN MENU<span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 ">
-									<?php
-									echo cmb_dinamis('id_level_user', 'tabel_level_user', 'nama_level', 'id_level_user')
-									;?>
+									<select name="is_main_menu" id="" class="form-control">
+										<option value="0">MAIN MENU</option>
+										<?php
+										$menu = $this->db->get('tabel_menu');
+										foreach ($menu->result() as $row) {
+											echo "<option value='$row->id'>$row->nama_menu</option>";
+										}
+										?>
+									</select>
 								</div>
-							</div>
-
-							<div class="item form-group">
-								<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">FOTO <span class="required">*</span>
-								</label>
-								<input type="file" name="userfile" class="col-md-3 col-sm-3">
 							</div>
 
 							<div class="ln_solid"></div>
 							<div class="item form-group">
 								<div class="col-md-6 col-sm-6 offset-md-3">
 									<?php
-										echo anchor('users', 'Kembali', array('class'=>'btn btn-primary'));
+										echo anchor('menu', 'Kembali', array('class'=>'btn btn-primary'));
 									?>
 									<button type="submit" name="submit" class="btn btn-success">Simpan</button>
 								</div>

@@ -31,7 +31,7 @@
 						<br>
 
 						<?php
-						echo form_open('users/edit', 'id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate=""');
+						echo form_open_multipart('users/edit', 'id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate=""');
 						echo form_hidden('id_user', $user['id_user']);
 						?>
 						<div class="item form-group">
@@ -51,6 +51,14 @@
 						</div>
 
 						<div class="item form-group">
+							<label class="col-form-label col-md-3 col-sm-3 label-align">PASSWORD<span class="required">*</span>
+							</label>
+							<div class="col-md-6 col-sm-6 ">
+								<input type="password" name="password" placeholder="Masukkan Password" required="required" class="form-control">
+							</div>
+						</div>
+
+						<div class="item form-group">
 							<label class="col-form-label col-md-3 col-sm-3 label-align">LEVEL USER<span class="required">*</span>
 							</label>
 							<div class="col-md-6 col-sm-6 ">
@@ -61,10 +69,9 @@
 						</div>
 
 						<div class="item form-group">
-							<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">FOTO <span class="required">*</span>
-							</label>
+							<label class="col-form-label col-md-3 col-sm-3 label-align">FOTO</label>
 							<input type="file" name="userfile" class="col-md-3 col-sm-3">
-							<img src="<?php echo base_url().'uploads/foto_user'.$user['foto'] ;?>" alt="">
+							<img src="<?php echo base_url().'uploads/foto_user/'.$user['foto']?>" width="200">
 						</div>
 
 						<div class="ln_solid"></div>

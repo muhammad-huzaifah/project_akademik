@@ -70,9 +70,9 @@ class Users extends CI_Controller
 	}
 
 	function delete() {
-		$edit = $this->uri->segment(3);
-		if (!empty($edit)) {
-			$this->db->where('id_user', $edit);
+		$id_user = $this->uri->segment(3);
+		if (!empty($id_user)) {
+			$this->db->where('id_user', $id_user);
 			$this->db->delete('tabel_user');
 		}
 		redirect('users');
@@ -80,8 +80,8 @@ class Users extends CI_Controller
 
     function uploads_foto_user() {
         $config['upload_path']          = './uploads/foto_user/';
-        $config['allowed_types']        = 'gif|jpg|png';
-        $config['max_size']             = 11024;
+        $config['allowed_types']        = 'jpg|png';
+        $config['max_size']             = 1024;
         $this->load->library('upload', $config);
         // proses upload
         $this->upload->do_upload('userfile');
