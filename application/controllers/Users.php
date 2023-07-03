@@ -91,6 +91,53 @@ class Users extends CI_Controller
         return $upload['file_name'];
     }
 
+	function rule()
+	{
+		$this->template->load('template', 'users/rule');
+	}
+
+	function modul()
+	{
+		echo "<table id='mytable' class='table table-striped table-bordered dataTable' style='width: 100%' role='grid'>
+				<thead>
+				<tr>
+					<th style='width: 10px;'>NO</th>
+					<th>NAMA MODUL</th>
+					<th>LINK</th>
+					<th style='width: 100px'>HAK AKSES</th>
+				</tr>";
+				
+				$menu = $this->db->get('tabel_menu');
+				$no=1;
+					foreach ($menu->result() as $row) {
+						echo "<tr>
+								<td>$no</td>
+								<td>$row->nama_menu</td>
+								<td>$row->link</td>
+								<td style='text-align: center'><input type='checkbox' name='akses' onclick='addRule($row->id)'></td>
+							   </tr>";
+						$no++;
+					}
+
+		echo "</thead>
+				</table>";
+	}
+
+	function addRule() {
+		$level_user = $_GET['level_user'];
+		$id_menu = $_GET['id_menu'];
+		$data = array('id_level_user'=>$level_user, 'id_menu'=>$id_menu);
+		$chek = $this->db->get_where('tabel_user_rule', $data);
+		if ($chek->num_rows()>0) {
+			$this->db->insert('tabel_user_rule', $chek);
+		}else{
+			$this->db->where('id_menu', $id_menu);
+			$this->db->where('id_level_user', $id_menu);
+			$this->db->delete('tabel_user_rule');
+		}
+
+	}
+
 
 }
 

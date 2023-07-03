@@ -5,6 +5,8 @@
 			<div class="col-md-12 col-sm-12 ">
 				<div class="x_panel">
 					<div class="x_title">
+						<?php echo anchor('users/rule', 'RULE USER', array('class'=>'btn btn-danger btn-sm'));?>
+						<br>
 						<h2>Daftar Users</h2>
 						<ul class="nav navbar-right panel_toolbox">
 							<li><?php echo anchor('users/add', '<i class="fa fa-edit"></i>', 'title="Tambah Data"'); ?></li>
