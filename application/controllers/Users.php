@@ -98,6 +98,7 @@ class Users extends CI_Controller
 
 	function modul()
 	{
+		$level_user = $_GET['level_user'];
 		echo "<table id='mytable' class='table table-striped table-bordered dataTable' style='width: 100%' role='grid'>
 				<thead>
 				<tr>
@@ -114,7 +115,9 @@ class Users extends CI_Controller
 								<td>$no</td>
 								<td>$row->nama_menu</td>
 								<td>$row->link</td>
-								<td style='text-align: center'><input type='checkbox' name='akses' onclick='addRule($row->id)'></td>
+								<td style='text-align: center'><input type='checkbox'  ";
+						$this->check_akses($level_user, $row->id);
+						echo "onclick='addRule($row->id)'></td>
 							   </tr>";
 						$no++;
 					}
@@ -123,17 +126,29 @@ class Users extends CI_Controller
 				</table>";
 	}
 
+	function check_akses($level_user, $id_menu) {
+		$data = array('id_level_user'=>$level_user, 'id_menu'=>$id_menu);
+		$chek = $this->db->get('tabel_user_rule', $data);
+		if ($chek->num_rows() > 0) {
+			echo "Chacked='chacked'";
+		}
+	}
+
 	function addRule() {
 		$level_user = $_GET['level_user'];
 		$id_menu = $_GET['id_menu'];
 		$data = array('id_level_user'=>$level_user, 'id_menu'=>$id_menu);
+//		print_r($data);
+//		die();
 		$chek = $this->db->get_where('tabel_user_rule', $data);
-		if ($chek->num_rows()>0) {
-			$this->db->insert('tabel_user_rule', $chek);
+		if ($chek->num_rows() < 1) {
+			$this->db->insert('tabel_user_rule', $data);
+//			echo "insert";
 		}else{
 			$this->db->where('id_menu', $id_menu);
 			$this->db->where('id_level_user', $id_menu);
 			$this->db->delete('tabel_user_rule');
+//			echo "delete";
 		}
 
 	}

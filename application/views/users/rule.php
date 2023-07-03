@@ -51,10 +51,11 @@
 
 <script type="text/javascript">
 	function loadData() {
+		var level_user = $("#level_user").val();
 		$.ajax( {
 				type:'GET',
 				url :'<?php echo base_url() ?>index.php/users/modul',
-				//'<?php //echo $this->uri->segment(3) ?>//',
+				data:'level_user='+level_user,
 				success:function (html) {
 					$("#tabel").html(html);
 				}
