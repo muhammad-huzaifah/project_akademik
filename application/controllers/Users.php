@@ -117,7 +117,7 @@ class Users extends CI_Controller
 								<td>$row->link</td>
 								<td style='text-align: center'><input type='checkbox'  ";
 						$this->check_akses($level_user, $row->id);
-						echo "onclick='addRule($row->id)'></td>
+						echo " onclick='addRule($row->id)'></td>
 							   </tr>";
 						$no++;
 					}
@@ -128,9 +128,9 @@ class Users extends CI_Controller
 
 	function check_akses($level_user, $id_menu) {
 		$data = array('id_level_user'=>$level_user, 'id_menu'=>$id_menu);
-		$chek = $this->db->get('tabel_user_rule', $data);
+		$chek = $this->db->get_where('tabel_user_rule', $data);
 		if ($chek->num_rows() > 0) {
-			echo "Chacked='chacked'";
+			echo "Checked";
 		}
 	}
 
