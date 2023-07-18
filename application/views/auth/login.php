@@ -75,7 +75,7 @@
 		<div class="animate form login_form">
 			<section class="login_content">
 				<!--<form>-->
-					<?php echo form_open('auth/check_login', 'class="login_content"'); ?>
+					<?php echo form_open('auth/checkLogin', 'class="login_content"'); ?>
 					<h1>Login Form</h1>
 					<h1>Sistem Informasi Akademik</h1>
 					<div>

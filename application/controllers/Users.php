@@ -50,7 +50,7 @@ class Users extends CI_Controller
 		if (isset($_POST['submit'])) {
 //			echo "save";
             $uploadFoto = $this->uploads_foto_user();
-			$this->Model_user->save($uploadFoto);
+			$this->Model_user->checkLogin($uploadFoto);
 			redirect('users');
 		} else {
 			$this->template->load('template', 'users/add');
