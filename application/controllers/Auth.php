@@ -1,5 +1,5 @@
 <?php
-class Auth extends CI_Controller {
+class auth extends CI_Controller {
 
     function __construct()
     {
@@ -11,7 +11,7 @@ class Auth extends CI_Controller {
 			$this->load->view('auth/login');
 	}
 
-    function checkLogin () {
+    function check_login () {
         if (isset($_POST['submit'])){
             //proses login di sini
             $username = $this->input->post('username');
@@ -25,7 +25,7 @@ class Auth extends CI_Controller {
 //				echo "gagal login";
 				redirect('auth');
 			}
-//            print_r($result);
+            print_r($result);
         } else {
             redirect('auth');
         }

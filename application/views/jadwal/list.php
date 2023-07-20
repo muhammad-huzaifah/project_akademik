@@ -36,7 +36,8 @@
 												Jadwal Otomatis
 											</button>
 											<button type="submit" name="export_jadwal" class="btn btn-danger btn-sm">Cetak PDF</button>
-
+<!--											--><?php //echo anchor('kurikulum/adddetail/'.$this->uri->segment(3), '<i class="fa fa-edit"></i> Tambah Data', "title='Tambah Data' class='btn btn-danger btn-sm'"); ?>
+<!--											--><?php //echo anchor('kurikulum', 'kembali', "class='btn btn-success btn-sm'");?>
 										</td>
 									</tr>
 

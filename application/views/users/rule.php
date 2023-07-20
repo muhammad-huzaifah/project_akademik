@@ -13,7 +13,7 @@
 						<div class="row">
 							<div class="col-sm-12">
 								<table id="mytable" class="table table-striped table-bordered dataTable" style="width: 100%" role="grid">
-									<tr><td style="text-align: center" >Pilih Level</td><td><?php echo cmb_dinamis('level_user', 'tabel_level_user', 'nama_level', 'id_level_user', null, "id='level_user' onchange='loadData()'")?></td></tr>
+									<tr><td style="text-align: center" >Pilih Level</td><td><?php echo cmb_dinamis('level_user', 'tabel_level_user', 'nama_level', 'id_level_user', null, "id='level_user'")?></td></tr>
 								</table>
 							</div>
 						</div>
