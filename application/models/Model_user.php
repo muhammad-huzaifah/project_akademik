@@ -2,17 +2,17 @@
 
 class Model_user extends CI_Model
 {
-//    function checkLogin($username, $password)
-//    {
-//        $this->db->where('username', $username);
-//        $this->db->where('password', md5($password));
-//        $user = $this->db->get('v_tabel_user')->row_array();
-//        return $user;
-//    }
+    function checkLogin($username, $password)
+    {
+        $this->db->where('username', $username);
+        $this->db->where('password', md5($password));
+        $user = $this->db->get('v_tabel_user')->row_array();
+        return $user;
+    }
 
     public $table = 'tabel_user';
 
-    function save ($foto) {
+	function save ($foto) {
         $data = array (
             'nama_lengkap'  => $this->input->post('nama_lengkap', TRUE),
             'username'      => $this->input->post('username', TRUE),

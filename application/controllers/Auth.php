@@ -17,6 +17,7 @@ class auth extends CI_Controller {
             $username = $this->input->post('username');
             $password = $this->input->post('password');
             $result = $this->Model_user->checkLogin($username, $password);
+//			print_r($result);
 			if (!empty($result)) {
 //				echo " Login sukses ";
 				$this->session->set_userdata($result);
@@ -25,7 +26,6 @@ class auth extends CI_Controller {
 //				echo "gagal login";
 				redirect('auth');
 			}
-            print_r($result);
         } else {
             redirect('auth');
         }
