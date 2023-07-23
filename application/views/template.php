@@ -109,7 +109,11 @@
 							<!--awal area menu dinamis-->
 
 							<?php
+//							print_r($this->session->userdata());
+							$id_level_user = $this->session->userdata('id_level_user');
+							$sql_menu = "select * from tabel_menu WHERE id in (select id_menu from tabel_user_rule where id_level_user=$id_level_user) and is_main_menu=0";
 							$main_menu = $this->db->get_where('tabel_menu', array('is_main_menu' => 0))->result();
+							$main_menu = $this->db->query($sql_menu)->result();
 							foreach ($main_menu as $main) {
 								// check apakah ada submenu?
 								$submenu = $this->db->get_where('tabel_menu', array('is_main_menu' => $main->id));

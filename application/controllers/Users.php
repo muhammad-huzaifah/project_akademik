@@ -144,11 +144,13 @@ class Users extends CI_Controller
 		if ($chek->num_rows() < 1) {
 			$this->db->insert('tabel_user_rule', $data);
 //			echo "insert";
+//			echo "berhasil memberikan akses modul";
 		}else{
 			$this->db->where('id_menu', $id_menu);
-			$this->db->where('id_level_user', $id_menu);
+			$this->db->where('id_level_user', $level_user);
 			$this->db->delete('tabel_user_rule');
 //			echo "delete";
+//			echo "berhasil delete akses modul";
 		}
 
 	}
