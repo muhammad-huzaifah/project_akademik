@@ -5,7 +5,7 @@ class Siswa extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
-		//CheckAksesModule();
+		checkAksesModule();
 		$this->load->library('ssp');
 		$this->load->model('Model_siswa');
 	}
