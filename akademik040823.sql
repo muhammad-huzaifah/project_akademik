@@ -1,13 +1,13 @@
--- MariaDB dump 10.19  Distrib 10.4.25-MariaDB, for Win64 (AMD64)
+-- MySQL dump 10.16  Distrib 10.1.8-MariaDB, for Win32 (AMD64)
 --
 -- Host: 127.0.0.1    Database: akademik
 -- ------------------------------------------------------
--- Server version	10.4.25-MariaDB
+-- Server version	10.1.8-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -51,8 +51,10 @@ CREATE TABLE `tabel_guru` (
   `nuptk` varchar(16) NOT NULL,
   `nama_guru` varchar(30) NOT NULL,
   `jenis_kelamin` enum('P','W') NOT NULL,
+  `username` varchar(32) DEFAULT NULL,
+  `password` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id_guru`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -61,8 +63,34 @@ CREATE TABLE `tabel_guru` (
 
 LOCK TABLES `tabel_guru` WRITE;
 /*!40000 ALTER TABLE `tabel_guru` DISABLE KEYS */;
-INSERT INTO `tabel_guru` VALUES (1,'870470182','Mama Ina','W'),(2,'0183204','Kakak Ira','W'),(3,'2452354','Ayah ujeb','P'),(4,'2525','Adek Iru','P');
+INSERT INTO `tabel_guru` VALUES (1,'870470182','Mama Ina','W',NULL,NULL),(2,'0183204','Kakak Ira','W',NULL,NULL),(3,'2452354','Ayah ujeb','P',NULL,NULL),(4,'2525','Adek Iru','P',NULL,NULL),(5,'12314','Khaira Bishry Huzaifah','W','khaira','dce42e0a59674838927a177ebf78ef51'),(6,'413414','ujeb guru','P','ujeb','cee7c6eb8e6b0a1c43519c060a8feb0b');
 /*!40000 ALTER TABLE `tabel_guru` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tabel_history_kelas`
+--
+
+DROP TABLE IF EXISTS `tabel_history_kelas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tabel_history_kelas` (
+  `id_history` int(11) NOT NULL AUTO_INCREMENT,
+  `id_rombel` int(11) NOT NULL,
+  `nim` varchar(11) NOT NULL,
+  `id_tahun_akademik` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_history`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tabel_history_kelas`
+--
+
+LOCK TABLES `tabel_history_kelas` WRITE;
+/*!40000 ALTER TABLE `tabel_history_kelas` DISABLE KEYS */;
+INSERT INTO `tabel_history_kelas` VALUES (1,5,'T525235',2),(2,1,'T123098',1),(3,2,'T0123',1),(4,1,'T879234',1),(5,1,'081840',1),(6,1,'67676647',1);
+/*!40000 ALTER TABLE `tabel_history_kelas` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -206,6 +234,30 @@ INSERT INTO `tabel_kurikulum_detail` VALUES (1,1,'BID','RPL',3),(4,1,'TIK','RPL'
 UNLOCK TABLES;
 
 --
+-- Table structure for table `tabel_level_user`
+--
+
+DROP TABLE IF EXISTS `tabel_level_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tabel_level_user` (
+  `id_level_user` int(11) NOT NULL,
+  `nama_level` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`id_level_user`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tabel_level_user`
+--
+
+LOCK TABLES `tabel_level_user` WRITE;
+/*!40000 ALTER TABLE `tabel_level_user` DISABLE KEYS */;
+INSERT INTO `tabel_level_user` VALUES (1,'Admin'),(2,'Walikelas'),(3,'Guru'),(4,'Keuangan');
+/*!40000 ALTER TABLE `tabel_level_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tabel_mapel`
 --
 
@@ -271,7 +323,7 @@ CREATE TABLE `tabel_rombel` (
   PRIMARY KEY (`id_rombel`),
   KEY `tabel_rombel_tabel_jurusan_kd_jurusan_fk` (`kd_jurusan`),
   CONSTRAINT `tabel_rombel_tabel_jurusan_kd_jurusan_fk` FOREIGN KEY (`kd_jurusan`) REFERENCES `tabel_jurusan` (`kd_jurusan`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -322,7 +374,7 @@ CREATE TABLE `tabel_siswa` (
   `tanggal_lahir` date DEFAULT NULL,
   `tempat_lahir` varchar(30) DEFAULT NULL,
   `kd_agama` varchar(2) NOT NULL,
-  `foto` text DEFAULT NULL,
+  `foto` text,
   `id_rombel` int(11) NOT NULL,
   PRIMARY KEY (`nim`),
   KEY `foreign_key_name` (`kd_agama`),
@@ -336,7 +388,7 @@ CREATE TABLE `tabel_siswa` (
 
 LOCK TABLES `tabel_siswa` WRITE;
 /*!40000 ALTER TABLE `tabel_siswa` DISABLE KEYS */;
-INSERT INTO `tabel_siswa` VALUES ('T102137','Rina','W','2022-12-15','Jakarta','01','IMG_20220626_122031.jpg',1),('T102138','Khaira Bishry','W','2022-12-22','Medan','01','1077926.jpg',1),('T120139','MUHAMMAD HUZAIFAH, S.Kom.','P','2022-12-13','Medan','01','pas_photo_terbaru.jpg',1),('TIM102317','Abang Ujeb keren','P','2022-12-15','Medan','01','IMG_20220626_122319.jpg',1),('TIM102318','Muhammad Khairu Mubarak Huzaifah','P','2022-12-04','Bekasi','01','IMG_20220827_073532.jpg',1);
+INSERT INTO `tabel_siswa` VALUES ('081840','ayah ujeb baik','P','1978-11-19','medan','01','63457.jpg',1),('67676647','ira iru','P','2016-12-12','bekasi','01','businessman-310819_1280.png',1),('T102137','Rina','W','2022-12-15','Jakarta','01','IMG_20220626_122031.jpg',1),('T120139','MUHAMMAD HUZAIFAH, S.Kom.','P','2022-12-13','Medan','01','pas_photo_terbaru.jpg',1),('TIM102317','Abang Ujeb keren','P','2022-12-15','Medan','01','IMG_20220626_122319.jpg',1),('TIM102318','Muhammad Khairu Mubarak Huzaifah','P','2022-12-04','Bekasi','01','IMG_20220827_073532.jpg',1);
 /*!40000 ALTER TABLE `tabel_siswa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -353,7 +405,7 @@ CREATE TABLE `tabel_tahun_akademik` (
   `is_aktif` enum('Y','N') DEFAULT NULL,
   `semester_aktif` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_tahun_akademik`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -362,8 +414,63 @@ CREATE TABLE `tabel_tahun_akademik` (
 
 LOCK TABLES `tabel_tahun_akademik` WRITE;
 /*!40000 ALTER TABLE `tabel_tahun_akademik` DISABLE KEYS */;
-INSERT INTO `tabel_tahun_akademik` VALUES (2,'2019/2020','Y',1),(5,'2021/2022','',NULL),(7,'2015/2016','Y',NULL),(8,'2013/2014','Y',NULL),(9,'2016/2017','Y',NULL),(13,'2017/2018','N',NULL);
+INSERT INTO `tabel_tahun_akademik` VALUES (1,'2019/2020','Y',1),(5,'2021/2022','',1),(7,'2015/2016','Y',NULL),(8,'2013/2014','Y',NULL),(9,'2016/2017','Y',NULL),(14,'2017/2018','N',NULL);
 /*!40000 ALTER TABLE `tabel_tahun_akademik` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tabel_user`
+--
+
+DROP TABLE IF EXISTS `tabel_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tabel_user` (
+  `id_user` int(11) NOT NULL AUTO_INCREMENT,
+  `nama_lengkap` varchar(50) NOT NULL,
+  `username` varchar(40) NOT NULL,
+  `password` varchar(32) NOT NULL,
+  `id_level_user` int(11) NOT NULL,
+  `foto` text NOT NULL,
+  PRIMARY KEY (`id_user`),
+  KEY `tabel_user_tabel_level_user_id_level_user_fk` (`id_level_user`),
+  CONSTRAINT `tabel_user_tabel_level_user_id_level_user_fk` FOREIGN KEY (`id_level_user`) REFERENCES `tabel_level_user` (`id_level_user`)
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tabel_user`
+--
+
+LOCK TABLES `tabel_user` WRITE;
+/*!40000 ALTER TABLE `tabel_user` DISABLE KEYS */;
+INSERT INTO `tabel_user` VALUES (30,'Muhammad Huzaifah','huzaifah','a3b3d95d700877ca07feb928683e7635',1,'businessman-310819_1280.png'),(39,'khaira bishry huzaifah','khaira','dce42e0a59674838927a177ebf78ef51',3,'IMG_20200201_111121.jpg'),(40,'Rachmah Octarina','rachmah','0aab374aa8afffd1d19f4287fd78ed96',2,'IMG_20200307_100940.jpg'),(45,'khairu_keuangan','khairu','1415c8c6613bf9573faf8f0a1212a27e',4,'businessman-310819_12801.png');
+/*!40000 ALTER TABLE `tabel_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tabel_user_rule`
+--
+
+DROP TABLE IF EXISTS `tabel_user_rule`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tabel_user_rule` (
+  `id_rule` int(11) NOT NULL AUTO_INCREMENT,
+  `id_menu` int(11) DEFAULT NULL,
+  `id_level_user` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_rule`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tabel_user_rule`
+--
+
+LOCK TABLES `tabel_user_rule` WRITE;
+/*!40000 ALTER TABLE `tabel_user_rule` DISABLE KEYS */;
+INSERT INTO `tabel_user_rule` VALUES (1,21,4),(4,10,3),(5,23,4),(6,1,1),(7,2,1),(8,3,1),(9,9,1),(10,10,1),(11,11,1),(12,12,1),(13,13,1),(14,14,1),(15,17,1),(16,19,1),(17,20,1),(18,16,3),(19,14,3),(20,16,2),(21,20,2),(22,15,2),(26,16,1),(27,1,2);
+/*!40000 ALTER TABLE `tabel_user_rule` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -379,7 +486,7 @@ CREATE TABLE `tabel_walikelas` (
   `id_tahun_akademik` int(11) NOT NULL,
   `id_rombel` int(11) NOT NULL,
   PRIMARY KEY (`id_walikelas`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -388,7 +495,7 @@ CREATE TABLE `tabel_walikelas` (
 
 LOCK TABLES `tabel_walikelas` WRITE;
 /*!40000 ALTER TABLE `tabel_walikelas` DISABLE KEYS */;
-INSERT INTO `tabel_walikelas` VALUES (1,2,2,1),(2,2,2,2),(3,2,2,3),(4,2,2,4),(5,2,2,5),(6,2,2,9),(7,2,2,1),(8,2,2,2),(9,2,2,3),(10,2,2,4),(11,2,2,5),(12,2,2,9);
+INSERT INTO `tabel_walikelas` VALUES (13,4,1,1),(14,2,1,2),(15,2,1,3),(16,2,1,4),(17,2,1,5),(18,2,1,9);
 /*!40000 ALTER TABLE `tabel_walikelas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -403,7 +510,7 @@ CREATE TABLE `table_sekolah_info` (
   `id_sekolah` int(11) NOT NULL,
   `nama_sekolah` varchar(30) NOT NULL,
   `id_jenjang_sekolah` int(11) NOT NULL,
-  `alamat_sekolah` text DEFAULT NULL,
+  `alamat_sekolah` text,
   `email` varchar(30) DEFAULT NULL,
   `Telepon` varchar(12) DEFAULT NULL,
   PRIMARY KEY (`id_sekolah`),
@@ -440,6 +547,44 @@ SET character_set_client = utf8;
 SET character_set_client = @saved_cs_client;
 
 --
+-- Temporary table structure for view `v_tabel_user`
+--
+
+DROP TABLE IF EXISTS `v_tabel_user`;
+/*!50001 DROP VIEW IF EXISTS `v_tabel_user`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `v_tabel_user` (
+  `id_user` tinyint NOT NULL,
+  `nama_lengkap` tinyint NOT NULL,
+  `username` tinyint NOT NULL,
+  `password` tinyint NOT NULL,
+  `id_level_user` tinyint NOT NULL,
+  `foto` tinyint NOT NULL,
+  `nama_level` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary table structure for view `v_walikelas`
+--
+
+DROP TABLE IF EXISTS `v_walikelas`;
+/*!50001 DROP VIEW IF EXISTS `v_walikelas`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `v_walikelas` (
+  `nama_guru` tinyint NOT NULL,
+  `nama_rombel` tinyint NOT NULL,
+  `id_walikelas` tinyint NOT NULL,
+  `id_tahun_akademik` tinyint NOT NULL,
+  `nama_jurusan` tinyint NOT NULL,
+  `kelas` tinyint NOT NULL,
+  `tahun_akademik` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Final view structure for view `v_master_rombel`
 --
 
@@ -453,7 +598,45 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `v_master_rombel` AS select `tr`.`id_rombel` AS `id_rombel`,`tr`.`nama_rombel` AS `nama_rombel`,`tr`.`kelas` AS `kelas`,`tr`.`kd_jurusan` AS `kd_jurusan`,`tj`.`nama_jurusan` AS `nama_jurusan` from (`tabel_rombel` `tr` join `tabel_jurusan` `tj`) where `tj`.`kd_jurusan` = `tr`.`kd_jurusan` */;
+/*!50001 VIEW `v_master_rombel` AS select `tr`.`id_rombel` AS `id_rombel`,`tr`.`nama_rombel` AS `nama_rombel`,`tr`.`kelas` AS `kelas`,`tr`.`kd_jurusan` AS `kd_jurusan`,`tj`.`nama_jurusan` AS `nama_jurusan` from (`tabel_rombel` `tr` join `tabel_jurusan` `tj`) where (`tj`.`kd_jurusan` = `tr`.`kd_jurusan`) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `v_tabel_user`
+--
+
+/*!50001 DROP TABLE IF EXISTS `v_tabel_user`*/;
+/*!50001 DROP VIEW IF EXISTS `v_tabel_user`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_tabel_user` AS select `tu`.`id_user` AS `id_user`,`tu`.`nama_lengkap` AS `nama_lengkap`,`tu`.`username` AS `username`,`tu`.`password` AS `password`,`tu`.`id_level_user` AS `id_level_user`,`tu`.`foto` AS `foto`,`tlu`.`nama_level` AS `nama_level` from (`tabel_user` `tu` join `tabel_level_user` `tlu`) where (`tu`.`id_level_user` = `tlu`.`id_level_user`) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `v_walikelas`
+--
+
+/*!50001 DROP TABLE IF EXISTS `v_walikelas`*/;
+/*!50001 DROP VIEW IF EXISTS `v_walikelas`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_walikelas` AS select `g`.`nama_guru` AS `nama_guru`,`r`.`nama_rombel` AS `nama_rombel`,`w`.`id_walikelas` AS `id_walikelas`,`w`.`id_tahun_akademik` AS `id_tahun_akademik`,`j`.`nama_jurusan` AS `nama_jurusan`,`r`.`kelas` AS `kelas`,`ta`.`tahun_akademik` AS `tahun_akademik` from ((((`tabel_walikelas` `w` join `tabel_rombel` `r`) join `tabel_guru` `g`) join `tabel_jurusan` `j`) join `tabel_tahun_akademik` `ta`) where ((`w`.`id_guru` = `g`.`id_guru`) and (`w`.`id_rombel` = `r`.`id_rombel`) and (`j`.`kd_jurusan` = `r`.`kd_jurusan`) and (`ta`.`id_tahun_akademik` = `w`.`id_tahun_akademik`)) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -467,4 +650,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-03 16:38:58
+-- Dump completed on 2023-08-04  8:45:26
