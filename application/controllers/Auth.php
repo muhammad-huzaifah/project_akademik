@@ -5,10 +5,11 @@ class auth extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('Model_user');
+        $this->load->model('Model_guru');
     }
 
     function index() {
-			$this->load->view('auth/login');
+        $this->load->view('auth/login');
 	}
 
     function check_login () {
@@ -16,18 +17,29 @@ class auth extends CI_Controller {
             //proses login di sini
             $username = $this->input->post('username');
             $password = $this->input->post('password');
-            $result = $this->Model_user->checkLogin($username, $password);
+            $loginUser   = $this->Model_user->checkLogin($username, $password);
 //			print_r($result);
-			if (!empty($result)) {
+            $loginGuru = $this->Model_guru->checkLogin($username, $password);
+			if (!empty($loginUser)) {
 //				echo " Login sukses ";
-				$this->session->set_userdata($result);
+				$this->session->set_userdata($loginUser);
 				redirect('siswa');
-			} else {
-//				echo "gagal login";
-				redirect('auth');
-			}
-        } else {
-            redirect('auth');
+			} elseif (!empty($loginGuru)) {
+                // login guru
+                /*print_r($loginGuru);
+                die;*/
+
+                $session = array('nama_lengkap'=>$loginGuru['nama_guru'], 'id_level_user'=>3);
+//                print_r($session);
+//                die;
+
+                $this->session->set_userdata($session);
+
+                redirect('nilai');
+                } else {
+                    //echo "gagal login";
+                    redirect('auth');
+                }
         }
     }
 

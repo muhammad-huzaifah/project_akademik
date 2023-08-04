@@ -8,7 +8,9 @@ class Model_guru extends CI_Model
 		$data = array(
 			'nuptk'			=>$this->input->post('nuptk', TRUE),
 			'nama_guru'		=>$this->input->post('nama_guru', TRUE),
-			'jenis_kelamin'	=>$this->input->post('jenis_kelamin', TRUE)
+			'jenis_kelamin'	=>$this->input->post('jenis_kelamin', TRUE),
+            'username'      => $this->input->post('username', TRUE),
+            'password'      => md5($this->input->post('password', TRUE))
 		);
 //		print_r($data);
 //		print_r($_POST);
@@ -26,5 +28,13 @@ class Model_guru extends CI_Model
 		$this->db->where('id_guru', $id_guru);
 		$this->db->update($this->table, $data);
 	}
+
+    function checkLogin($username, $password)
+    {
+        $this->db->where('username', $username);
+        $this->db->where('password', md5($password));
+        $user = $this->db->get('tabel_guru')->row_array();
+        return $user;
+    }
 
 }

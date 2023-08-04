@@ -40,7 +40,7 @@ function checkAksesModule()
 	if (!empty($level_user)) {
 		// check apakah level ini diberikan hak akses atau tidak
 		$check = $ci->db->get_where('tabel_user_rule', array('id_level_user'=>$level_user, 'id_menu'=>$menu['id']));
-		//cara pertama untuk protec akses menu
+		//cara informasi logic
 		/*	if ($check->num_rows()>0) {
 				echo "OK";
 			}else {
