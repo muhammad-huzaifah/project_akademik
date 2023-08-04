@@ -1,13 +1,13 @@
--- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for Win64 (AMD64)
+-- MySQL dump 10.16  Distrib 10.1.8-MariaDB, for Win32 (AMD64)
 --
 -- Host: 127.0.0.1    Database: akademik
 -- ------------------------------------------------------
--- Server version	10.1.38-MariaDB
+-- Server version	10.1.8-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -51,8 +51,10 @@ CREATE TABLE `tabel_guru` (
   `nuptk` varchar(16) NOT NULL,
   `nama_guru` varchar(30) NOT NULL,
   `jenis_kelamin` enum('P','W') NOT NULL,
+  `username` varchar(32) DEFAULT NULL,
+  `password` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id_guru`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -61,7 +63,7 @@ CREATE TABLE `tabel_guru` (
 
 LOCK TABLES `tabel_guru` WRITE;
 /*!40000 ALTER TABLE `tabel_guru` DISABLE KEYS */;
-INSERT INTO `tabel_guru` VALUES (1,'870470182','Mama Ina','W'),(2,'0183204','Kakak Ira','W'),(3,'2452354','Ayah ujeb','P'),(4,'2525','Adek Iru','P');
+INSERT INTO `tabel_guru` VALUES (1,'870470182','Mama Ina','W',NULL,NULL),(2,'0183204','Kakak Ira','W',NULL,NULL),(3,'2452354','Ayah ujeb','P',NULL,NULL),(4,'2525','Adek Iru','P',NULL,NULL),(5,'12314','Khaira Bishry Huzaifah','W','khaira','dce42e0a59674838927a177ebf78ef51'),(6,'413414','ujeb guru','P','ujeb','cee7c6eb8e6b0a1c43519c060a8feb0b');
 /*!40000 ALTER TABLE `tabel_guru` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -458,7 +460,7 @@ CREATE TABLE `tabel_user_rule` (
   `id_menu` int(11) DEFAULT NULL,
   `id_level_user` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_rule`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -467,7 +469,7 @@ CREATE TABLE `tabel_user_rule` (
 
 LOCK TABLES `tabel_user_rule` WRITE;
 /*!40000 ALTER TABLE `tabel_user_rule` DISABLE KEYS */;
-INSERT INTO `tabel_user_rule` VALUES (1,21,4),(4,10,3),(5,23,4),(6,1,1),(7,2,1),(8,3,1),(9,9,1),(10,10,1),(11,11,1),(12,12,1),(13,13,1),(14,14,1),(15,17,1),(16,19,1),(17,20,1),(18,16,3),(19,14,3),(20,16,2),(21,20,2),(22,15,2),(26,16,1);
+INSERT INTO `tabel_user_rule` VALUES (1,21,4),(4,10,3),(5,23,4),(6,1,1),(7,2,1),(8,3,1),(9,9,1),(10,10,1),(11,11,1),(12,12,1),(13,13,1),(14,14,1),(15,17,1),(16,19,1),(17,20,1),(18,16,3),(19,14,3),(20,16,2),(21,20,2),(22,15,2),(26,16,1),(27,1,2);
 /*!40000 ALTER TABLE `tabel_user_rule` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -648,4 +650,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-07-23 13:11:34
+-- Dump completed on 2023-08-04  8:45:26
