@@ -35,7 +35,7 @@ class auth extends CI_Controller {
 
                 $this->session->set_userdata($session);
 
-                redirect('nilai');
+                redirect('jadwal');
                 } else {
                     //echo "gagal login";
                     redirect('auth');

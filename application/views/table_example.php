@@ -35,8 +35,8 @@
 										<div class="row">
 											<div class="col-sm-6">
 												<div class="dataTables_length" id="datatable_length"><label>Show <select
-																name="datatable_length" aria-controls="datatable"
-																class="form-control input-sm">
+															name="datatable_length" aria-controls="datatable"
+															class="form-control input-sm">
 															<option value="10">10</option>
 															<option value="25">25</option>
 															<option value="50">50</option>
