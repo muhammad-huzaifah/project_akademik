@@ -1,8 +1,8 @@
--- MySQL dump 10.16  Distrib 10.1.8-MariaDB, for Win32 (AMD64)
+-- MySQL dump 10.16  Distrib 10.1.38-MariaDB, for Win64 (AMD64)
 --
 -- Host: 127.0.0.1    Database: akademik
 -- ------------------------------------------------------
--- Server version	10.1.8-MariaDB
+-- Server version	10.1.38-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -122,7 +122,7 @@ CREATE TABLE `tabel_jadwal` (
 
 LOCK TABLES `tabel_jadwal` WRITE;
 /*!40000 ALTER TABLE `tabel_jadwal` DISABLE KEYS */;
-INSERT INTO `tabel_jadwal` VALUES (40,2,'RPL',1,'TIK',3,'','01B',1,'',1),(41,2,'RPL',1,'TIK',2,'','01B',1,'',2),(42,2,'RPL',1,'MTK',2,'','011',1,'',1),(43,2,'RPL',1,'MTK',2,'','011',1,'',2),(44,2,'RPL',1,'IPA',2,'','011',1,'',1),(45,2,'RPL',1,'IPA',2,'','011',1,'',2);
+INSERT INTO `tabel_jadwal` VALUES (40,2,'RPL',1,'TIK',3,'08.00-09.00','01B',1,'Senin',1),(41,2,'RPL',2,'TIK',2,'09.30-10.30','01B',1,'Selasa',2),(42,2,'RPL',3,'MTK',2,'10.30-11.30','011',1,'Rabu',1),(43,2,'RPL',1,'MTK',2,'13.00-14.00','011',1,'Kamis',2),(44,2,'RPL',2,'IPA',2,'08.30-09.30','011',1,'Jum\'at',1),(45,2,'RPL',3,'IPA',2,'09.30-10.30','011',1,'Senin',2);
 /*!40000 ALTER TABLE `tabel_jadwal` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -304,7 +304,7 @@ CREATE TABLE `tabel_menu` (
 
 LOCK TABLES `tabel_menu` WRITE;
 /*!40000 ALTER TABLE `tabel_menu` DISABLE KEYS */;
-INSERT INTO `tabel_menu` VALUES (1,'Database Siswa','siswa','fa fa-users',0),(2,'Database Guru','guru','fa fa-graduation-cap',0),(3,'Data Sekolah','sekolah','fa fa-building',0),(9,'Data Master','#','fa fa-bars',0),(10,'Mata Pelajaran','mapel','fa fa-book',9),(11,'Ruangan Kelas','ruangan','fa fa-building',9),(12,'Jurusan','jurusan','fa fa-th-large',9),(13,'Tahun Akademik','tahunakademik','fa fa-calendar-o',9),(14,'Jadwal Pelajaran','jadwal','fa fa-calendar',0),(15,'Rombongan Belajar','rombel','fa fa-users',9),(16,'Laporan Nilai','nilai','fa fa-file-excel-o',0),(17,'Pengguna Sistem','users','fa fa-cubes',0),(19,'Kurikulum','kurikulum','fa fa-newspaper-o',9),(20,'Wali Kelas','walikelas','fa fa-users',0),(21,'Form Pembayaran','keuangan/form','fa fa-shopping-cart',0),(22,'Peserta Didik','siswa/siswa_aktif','fa fa-graduation-cap',0),(23,'Jenis Pembayaran','jenis_pembayaran','fa fa-credit-card',0),(24,'Setup Biaya','keuangan/setup','fa fa-graduation-cap',0),(25,'Raport Online','raport','fa fa-graduation-cap',0),(26,'SMS Gateway','sms','fa fa-envelope-o',0),(27,'Phonebook','sms_group','fa fa-book',26),(28,'Form SMS','sms','fa fa-keyboard-o',26);
+INSERT INTO `tabel_menu` VALUES (1,'Database Siswa','siswa','fa fa-users',0),(2,'Database Guru','guru','fa fa-graduation-cap',0),(3,'Data Sekolah','sekolah','fa fa-building',0),(9,'Data Master','#','fa fa-bars',0),(10,'Mata Pelajaran','mapel','fa fa-book',9),(11,'Ruangan Kelas','ruangan','fa fa-building',9),(12,'Jurusan','jurusan','fa fa-th-large',9),(13,'Tahun Akademik','tahunakademik','fa fa-calendar-o',9),(14,'Jadwal Pelajaran','jadwal','fa fa-calendar',0),(15,'Rombongan Belajar','rombel','fa fa-users',9),(16,'Laporan Nilai','nilai','fa fa-file-excel-o',0),(17,'Pengguna Sistem','users','fa fa-cubes',0),(19,'Kurikulum','kurikulum','fa fa-newspaper-o',9),(20,'Wali Kelas','walikelas','fa fa-users',0),(21,'Form Pembayaran','keuangan/form','fa fa-shopping-cart',0),(22,'Peserta Didik','siswa/siswa_aktif','fa fa-graduation-cap',0),(23,'Jenis Pembayaran','jenis_pembayaran','fa fa-credit-card',0),(24,'Setup Biaya','keuangan/setup','fa fa-graduation-cap',0),(25,'Raport Online','raport','fa fa-graduation-cap',0),(26,'SMS Gateway','sms','fa fa-envelope-o',0),(27,'Phonebook','sms_group','fa fa-book',26),(28,'Form SMS','sms','fa fa-keyboard-o',26),(29,'Logout','logout','fa fa-sign-out',0);
 /*!40000 ALTER TABLE `tabel_menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -414,7 +414,7 @@ CREATE TABLE `tabel_tahun_akademik` (
 
 LOCK TABLES `tabel_tahun_akademik` WRITE;
 /*!40000 ALTER TABLE `tabel_tahun_akademik` DISABLE KEYS */;
-INSERT INTO `tabel_tahun_akademik` VALUES (1,'2019/2020','Y',1),(5,'2021/2022','',1),(7,'2015/2016','Y',NULL),(8,'2013/2014','Y',NULL),(9,'2016/2017','Y',NULL),(14,'2017/2018','N',NULL);
+INSERT INTO `tabel_tahun_akademik` VALUES (1,'2019/2020','Y',1),(5,'2021/2022','N',1),(7,'2015/2016','Y',NULL),(8,'2013/2014','Y',NULL),(9,'2016/2017','Y',NULL),(14,'2017/2018','N',NULL);
 /*!40000 ALTER TABLE `tabel_tahun_akademik` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -460,7 +460,7 @@ CREATE TABLE `tabel_user_rule` (
   `id_menu` int(11) DEFAULT NULL,
   `id_level_user` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_rule`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -469,7 +469,7 @@ CREATE TABLE `tabel_user_rule` (
 
 LOCK TABLES `tabel_user_rule` WRITE;
 /*!40000 ALTER TABLE `tabel_user_rule` DISABLE KEYS */;
-INSERT INTO `tabel_user_rule` VALUES (1,21,4),(4,10,3),(5,23,4),(6,1,1),(7,2,1),(8,3,1),(9,9,1),(10,10,1),(11,11,1),(12,12,1),(13,13,1),(14,14,1),(15,17,1),(16,19,1),(17,20,1),(18,16,3),(19,14,3),(20,16,2),(21,20,2),(22,15,2),(26,16,1),(27,1,2);
+INSERT INTO `tabel_user_rule` VALUES (1,21,4),(4,10,3),(5,23,4),(6,1,1),(7,2,1),(8,3,1),(9,9,1),(10,10,1),(11,11,1),(12,12,1),(13,13,1),(14,14,1),(15,17,1),(16,19,1),(17,20,1),(18,16,3),(19,14,3),(20,16,2),(21,20,2),(22,15,2),(26,16,1),(27,1,2),(28,29,3),(29,29,1),(30,29,2),(31,29,4);
 /*!40000 ALTER TABLE `tabel_user_rule` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -650,4 +650,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-04  8:45:26
+-- Dump completed on 2023-09-07 17:22:08

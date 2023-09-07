@@ -10,11 +10,25 @@ class Jadwal extends CI_Controller
 
 	function index()
 	{
-		$infoSekolah = "SELECT js.jumlah_kelas
-    				 	FROM tabel_jenjang_sekolah as js, table_sekolah_info as si 
+		/*$infoSekolah = "SELECT js.jumlah_kelas
+    				 	FROM tabel_jenjang_sekolah as js, table_sekolah_info as si
     				 	WHERE js.id_jenjang=si.id_jenjang_sekolah ";
 		$data['info'] = $this->db->query($infoSekolah)->row_array();
-		$this->template->load('template', 'jadwal/list', $data);
+		$this->template->load('template', 'jadwal/list', $data);*/
+		if ($this->session->userdata('id_level_user')==3) {
+			// load daftar ngajar guru
+			$sql = "SELECT tj.id_jadwal, tjr.nama_jurusan, tj.kelas, tm.nama_mapel, tj.jam, tr.nama_ruangan, tj.hari, tj.semester
+					FROM tabel_jadwal as tj, tabel_jurusan as tjr, tabel_ruangan as tr, tabel_mapel as tm
+					WHERE tj.kd_jurusan=tjr.kd_jurusan and tj.kd_mapel=tm.kd_mapel and tj.kd_ruangan=tr.kd_ruangan";
+			$data['jadwal'] = $this->db->query($sql);
+			$this->template->load('template', 'jadwal/jadwal_ajar_guru', $data);
+		} else {
+			$infoSekolah = "SELECT js.jumlah_kelas
+    				 	FROM tabel_jenjang_sekolah as js, table_sekolah_info as si 
+    				 	WHERE js.id_jenjang=si.id_jenjang_sekolah ";
+			$data['info'] = $this->db->query($infoSekolah)->row_array();
+			$this->template->load('template', 'jadwal/list', $data);
+		}
 	}
 
 	function generate_jadwal()
