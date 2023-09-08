@@ -7,7 +7,7 @@
 				<td style="width: 200px">TAHUN AKADEMIK</td><td>: <?php echo get_tahun_akademik_aktif('tahun_akademik')?></td>
 			</tr>
 			<tr>
-				<td>SEMESTER</td><td></td>
+				<td>SEMESTER</td><td>: <?php echo get_tahun_akademik_aktif('semester_aktif')?></td>
 			</tr>
 		</table>
 

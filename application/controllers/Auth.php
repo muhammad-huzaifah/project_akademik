@@ -29,7 +29,10 @@ class auth extends CI_Controller {
                 /*print_r($loginGuru);
                 die;*/
 
-                $session = array('nama_lengkap'=>$loginGuru['nama_guru'], 'id_level_user'=>3);
+                $session = array(
+					'nama_lengkap'	=>$loginGuru['nama_guru'],
+					'id_level_user'	=>3,
+					'id_guru'		=>$loginGuru['id_guru']);
 //                print_r($session);
 //                die;
 
@@ -40,7 +43,9 @@ class auth extends CI_Controller {
                     //echo "gagal login";
                     redirect('auth');
                 }
-        }
+        } else {
+			redirect('auth');
+		}
     }
 
 	function logout()
