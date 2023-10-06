@@ -1,5 +1,6 @@
 <?php
-class auth extends CI_Controller {
+
+class Auth extends CI_Controller {
 
     function __construct()
     {
@@ -23,7 +24,7 @@ class auth extends CI_Controller {
 			if (!empty($loginUser)) {
 //				echo " Login sukses ";
 				$this->session->set_userdata($loginUser);
-				redirect('siswa');
+				redirect('jadwal');
 			} elseif (!empty($loginGuru)) {
                 // login guru
                 /*print_r($loginGuru);
