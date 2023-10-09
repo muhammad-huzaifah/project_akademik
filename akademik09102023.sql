@@ -1,8 +1,8 @@
--- MariaDB dump 10.19  Distrib 10.5.22-MariaDB, for Win64 (AMD64)
+-- MariaDB dump 10.19  Distrib 10.4.27-MariaDB, for Win64 (AMD64)
 --
 -- Host: 127.0.0.1    Database: akademik
 -- ------------------------------------------------------
--- Server version	10.5.22-MariaDB
+-- Server version	10.4.27-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -51,10 +51,8 @@ CREATE TABLE `tabel_guru` (
   `nuptk` varchar(16) NOT NULL,
   `nama_guru` varchar(30) NOT NULL,
   `jenis_kelamin` enum('P','W') NOT NULL,
-  `username` varchar(32) DEFAULT NULL,
-  `password` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id_guru`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,7 +61,7 @@ CREATE TABLE `tabel_guru` (
 
 LOCK TABLES `tabel_guru` WRITE;
 /*!40000 ALTER TABLE `tabel_guru` DISABLE KEYS */;
-INSERT INTO `tabel_guru` VALUES (1,'870470182','Mama Ina','W',NULL,NULL),(2,'0183204','Kakak Ira','W',NULL,NULL),(3,'2452354','Khaira Bishry Huzaifah','W','khaira','dce42e0a59674838927a177ebf78ef51'),(4,'2525','Adek Iru','P',NULL,NULL),(5,'12314','Khaira Bishry Huzaifah','W','khaira','dce42e0a59674838927a177ebf78ef51'),(6,'413414','ujeb guru','P','ujeb','cee7c6eb8e6b0a1c43519c060a8feb0b');
+INSERT INTO `tabel_guru` VALUES (1,'870470182','Mama Ina','W'),(2,'0183204','Kakak Ira','W'),(3,'2452354','Ayah ujeb','P'),(4,'2525','Adek Iru','P');
 /*!40000 ALTER TABLE `tabel_guru` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,7 +111,7 @@ CREATE TABLE `tabel_jadwal` (
   `hari` varchar(10) DEFAULT NULL,
   `id_rombel` int(11) NOT NULL,
   PRIMARY KEY (`id_jadwal`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -122,7 +120,7 @@ CREATE TABLE `tabel_jadwal` (
 
 LOCK TABLES `tabel_jadwal` WRITE;
 /*!40000 ALTER TABLE `tabel_jadwal` DISABLE KEYS */;
-INSERT INTO `tabel_jadwal` VALUES (40,2,'RPL',1,'TIK',3,'08.00-09.00','01A',1,'Rabu',1),(41,2,'RPL',2,'TIK',2,'09.30-10.30','01B',1,'Selasa',2),(42,2,'RPL',3,'MTK',3,'10.30-11.30','01B',1,'Rabu',1),(43,2,'RPL',1,'MTK',5,'13.00-14.00','01B',1,'Kamis',2),(44,2,'TKJ',2,'IPA',2,'08.30-09.30','011',1,'Jum\'at',1),(45,2,'TKJ',3,'IPA',2,'09.30-10.30','011',1,'Senin',2);
+INSERT INTO `tabel_jadwal` VALUES (40,2,'RPL',1,'TIK',3,'','01B',1,'',1),(41,2,'RPL',1,'TIK',2,'','01B',1,'',2),(42,2,'RPL',1,'MTK',2,'','011',1,'',1),(43,2,'RPL',1,'MTK',2,'','011',1,'',2),(44,2,'RPL',1,'IPA',2,'','011',1,'',1),(45,2,'RPL',1,'IPA',2,'','011',1,'',2);
 /*!40000 ALTER TABLE `tabel_jadwal` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -220,7 +218,7 @@ CREATE TABLE `tabel_kurikulum_detail` (
   CONSTRAINT `tabel_kurikulum_detail_ibfk_1` FOREIGN KEY (`id_kurikulum`) REFERENCES `tabel_kurikulum` (`id_kurikulum`),
   CONSTRAINT `tabel_kurikulum_detail_ibfk_2` FOREIGN KEY (`kd_mapel`) REFERENCES `tabel_mapel` (`kd_mapel`),
   CONSTRAINT `tabel_kurikulum_detail_ibfk_3` FOREIGN KEY (`kd_jurusan`) REFERENCES `tabel_jurusan` (`kd_jurusan`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -229,7 +227,7 @@ CREATE TABLE `tabel_kurikulum_detail` (
 
 LOCK TABLES `tabel_kurikulum_detail` WRITE;
 /*!40000 ALTER TABLE `tabel_kurikulum_detail` DISABLE KEYS */;
-INSERT INTO `tabel_kurikulum_detail` VALUES (1,1,'BID','RPL',3),(4,1,'TIK','RPL',2),(7,1,'MTK','RPL',2),(8,1,'IPA','RPL',1),(9,1,'BID','RPL',1);
+INSERT INTO `tabel_kurikulum_detail` VALUES (1,1,'BID','RPL',3),(4,1,'TIK','RPL',2),(7,1,'MTK','RPL',2),(8,1,'IPA','RPL',1);
 /*!40000 ALTER TABLE `tabel_kurikulum_detail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -253,7 +251,7 @@ CREATE TABLE `tabel_level_user` (
 
 LOCK TABLES `tabel_level_user` WRITE;
 /*!40000 ALTER TABLE `tabel_level_user` DISABLE KEYS */;
-INSERT INTO `tabel_level_user` VALUES (1,'Admin'),(2,'Walikelas'),(3,'Guru'),(4,'Keuangan');
+INSERT INTO `tabel_level_user` VALUES (1,'Admin'),(2,'Walikelas'),(3,'Guru');
 /*!40000 ALTER TABLE `tabel_level_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -304,7 +302,7 @@ CREATE TABLE `tabel_menu` (
 
 LOCK TABLES `tabel_menu` WRITE;
 /*!40000 ALTER TABLE `tabel_menu` DISABLE KEYS */;
-INSERT INTO `tabel_menu` VALUES (1,'Database Siswa','siswa','fa fa-users',0),(2,'Database Guru','guru','fa fa-graduation-cap',0),(3,'Data Sekolah','sekolah','fa fa-building',0),(9,'Data Master','#','fa fa-bars',0),(10,'Mata Pelajaran','mapel','fa fa-book',9),(11,'Ruangan Kelas','ruangan','fa fa-building',9),(12,'Jurusan','jurusan','fa fa-th-large',9),(13,'Tahun Akademik','tahunakademik','fa fa-calendar-o',9),(14,'Jadwal Pelajaran','jadwal','fa fa-calendar',0),(15,'Rombongan Belajar','rombel','fa fa-users',9),(16,'Laporan Nilai','nilai','fa fa-file-excel-o',0),(17,'Pengguna Sistem','users','fa fa-cubes',0),(19,'Kurikulum','kurikulum','fa fa-newspaper-o',9),(20,'Wali Kelas','walikelas','fa fa-users',0),(21,'Form Pembayaran','keuangan/form','fa fa-shopping-cart',0),(22,'Peserta Didik','siswa/siswa_aktif','fa fa-graduation-cap',0),(23,'Jenis Pembayaran','jenis_pembayaran','fa fa-credit-card',0),(24,'Setup Biaya','keuangan/setup','fa fa-graduation-cap',0),(25,'Raport Online','raport','fa fa-graduation-cap',0),(26,'SMS Gateway','sms','fa fa-envelope-o',0),(27,'Phonebook','sms_group','fa fa-book',26),(28,'Form SMS','sms','fa fa-keyboard-o',26),(29,'Logout','logout','fa fa-sign-out',0);
+INSERT INTO `tabel_menu` VALUES (1,'Database Siswa','siswa','fa fa-users',0),(2,'Database Guru','guru','fa fa-graduation-cap',0),(3,'Data Sekolah','sekolah','fa fa-building',0),(9,'Data Master','#','fa fa-bars',0),(10,'Mata Pelajaran','mapel','fa fa-book',9),(11,'Ruangan Kelas','ruangan','fa fa-building',9),(12,'Jurusan','jurusan','fa fa-th-large',9),(13,'Tahun Akademik','tahunakademik','fa fa-calendar-o',9),(14,'Jadwal Pelajaran','jadwal','fa fa-calendar',0),(15,'Rombongan Belajar','rombel','fa fa-users',9),(16,'Laporan Nilai','nilai','fa fa-file-excel-o',0),(17,'Pengguna Sistem','users','fa fa-cubes',0),(19,'Kurikulum','kurikulum','fa fa-newspaper-o',9),(20,'Wali Kelas','walikelas','fa fa-users',0),(21,'Form Pembayaran','keuangan/form','fa fa-shopping-cart',0),(22,'Peserta Didik','siswa/siswa_aktif','fa fa-graduation-cap',0),(23,'Jenis Pembayaran','jenis_pembayaran','fa fa-credit-card',0),(24,'Setup Biaya','keuangan/setup','fa fa-graduation-cap',0),(25,'Raport Online','raport','fa fa-graduation-cap',0),(26,'SMS Gateway','sms','fa fa-envelope-o',0),(27,'Phonebook','sms_group','fa fa-book',26),(28,'Form SMS','sms','fa fa-keyboard-o',26);
 /*!40000 ALTER TABLE `tabel_menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -323,7 +321,7 @@ CREATE TABLE `tabel_rombel` (
   PRIMARY KEY (`id_rombel`),
   KEY `tabel_rombel_tabel_jurusan_kd_jurusan_fk` (`kd_jurusan`),
   CONSTRAINT `tabel_rombel_tabel_jurusan_kd_jurusan_fk` FOREIGN KEY (`kd_jurusan`) REFERENCES `tabel_jurusan` (`kd_jurusan`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -414,7 +412,7 @@ CREATE TABLE `tabel_tahun_akademik` (
 
 LOCK TABLES `tabel_tahun_akademik` WRITE;
 /*!40000 ALTER TABLE `tabel_tahun_akademik` DISABLE KEYS */;
-INSERT INTO `tabel_tahun_akademik` VALUES (1,'2019/2020','Y',1),(5,'2021/2022','N',1),(7,'2015/2016','Y',NULL),(8,'2013/2014','Y',NULL),(9,'2016/2017','Y',NULL),(14,'2017/2018','N',NULL);
+INSERT INTO `tabel_tahun_akademik` VALUES (1,'2019/2020','Y',1),(5,'2021/2022','',1),(7,'2015/2016','Y',NULL),(8,'2013/2014','Y',NULL),(9,'2016/2017','Y',NULL),(14,'2017/2018','N',NULL);
 /*!40000 ALTER TABLE `tabel_tahun_akademik` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -432,10 +430,8 @@ CREATE TABLE `tabel_user` (
   `password` varchar(32) NOT NULL,
   `id_level_user` int(11) NOT NULL,
   `foto` text NOT NULL,
-  PRIMARY KEY (`id_user`),
-  KEY `tabel_user_tabel_level_user_id_level_user_fk` (`id_level_user`),
-  CONSTRAINT `tabel_user_tabel_level_user_id_level_user_fk` FOREIGN KEY (`id_level_user`) REFERENCES `tabel_level_user` (`id_level_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  PRIMARY KEY (`id_user`)
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -444,7 +440,7 @@ CREATE TABLE `tabel_user` (
 
 LOCK TABLES `tabel_user` WRITE;
 /*!40000 ALTER TABLE `tabel_user` DISABLE KEYS */;
-INSERT INTO `tabel_user` VALUES (30,'Muhammad Huzaifah','huzaifah','a3b3d95d700877ca07feb928683e7635',1,'businessman-310819_1280.png'),(39,'khaira bishry huzaifah','khaira','dce42e0a59674838927a177ebf78ef51',3,'IMG_20200201_111121.jpg'),(40,'Rachmah Octarina','rachmah','0aab374aa8afffd1d19f4287fd78ed96',2,'IMG_20200307_100940.jpg'),(45,'khairu_keuangan','khairu','1415c8c6613bf9573faf8f0a1212a27e',4,'businessman-310819_12801.png');
+INSERT INTO `tabel_user` VALUES (30,'Muhammad Huzaifah','huzaifah','d41d8cd98f00b204e9800998ecf8427e',1,'businessman-310819_1280.png'),(39,'khaira bishry huzaifah','khaira','d41d8cd98f00b204e9800998ecf8427e',3,'IMG_20200201_111121.jpg'),(40,'Rachmah Octarina','rac','d41d8cd98f00b204e9800998ecf8427e',1,'IMG_20200307_100940.jpg');
 /*!40000 ALTER TABLE `tabel_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -460,7 +456,7 @@ CREATE TABLE `tabel_user_rule` (
   `id_menu` int(11) DEFAULT NULL,
   `id_level_user` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_rule`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -469,7 +465,6 @@ CREATE TABLE `tabel_user_rule` (
 
 LOCK TABLES `tabel_user_rule` WRITE;
 /*!40000 ALTER TABLE `tabel_user_rule` DISABLE KEYS */;
-INSERT INTO `tabel_user_rule` VALUES (1,21,4),(4,10,3),(5,23,4),(6,1,1),(7,2,1),(8,3,1),(9,9,1),(10,10,1),(11,11,1),(12,12,1),(13,13,1),(14,14,1),(15,17,1),(16,19,1),(17,20,1),(18,16,3),(19,14,3),(20,16,2),(21,20,2),(22,15,2),(26,16,1),(27,1,2),(28,29,3),(29,29,1),(30,29,2),(31,29,4),(32,1,3),(33,15,3),(34,12,3),(35,20,3),(36,11,3);
 /*!40000 ALTER TABLE `tabel_user_rule` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -644,4 +639,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-09  7:18:05
+-- Dump completed on 2023-07-03 14:28:33

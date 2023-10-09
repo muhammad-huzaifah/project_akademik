@@ -17,11 +17,10 @@ class Jadwal extends CI_Controller
 		$this->template->load('template', 'jadwal/list', $data);*/
 		if ($this->session->userdata('id_level_user')==3) {
 			// load daftar ngajar guru
-			$sql = "SELECT tj.id_jadwal, tjr.nama_jurusan, tj.kelas, tm.nama_mapel, tj.jam, tr.nama_ruangan, 
-                           tj.hari, tj.semester 
-                    FROM tabel_jadwal as tj, tabel_jurusan as tjr, tabel_ruangan as tr, tabel_mapel as tm
-					WHERE tj.kd_jurusan=tjr.kd_jurusan and tj.kd_mapel=tm.kd_mapel and tj.kd_ruangan=tr.kd_ruangan 
-					      and tj.id_guru=".$this->session->userdata('id_level_user');
+			$sql = "SELECT tj.id_jadwal, tjr.nama_jurusan, tj.kelas, tm.nama_mapel, tj.jam, tr.nama_ruangan, tj.hari, tj.semester
+					FROM tabel_jadwal as tj, tabel_jurusan as tjr, tabel_ruangan as tr, tabel_mapel as tm
+					WHERE tj.kd_jurusan=tjr.kd_jurusan and tj.kd_mapel=tm.kd_mapel and tj.kd_ruangan=tr.kd_ruangan and tj.id_guru=".
+				$this->session->userdata('id_guru');
 			$data['jadwal'] = $this->db->query($sql);
 			$this->template->load('template', 'jadwal/jadwal_ajar_guru', $data);
 		} else {
