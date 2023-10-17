@@ -19,6 +19,17 @@ function get_tahun_akademik_aktif($field) {
 	return $tahun[$field];
 }
 
+function check_nilai ($nim, $id_jadwal) {
+    $ci = & get_instance();
+    $nilai = $ci->db->get_where('tabel_nilai', array('nim'=>$nim, 'id_jadwal'=>$id_jadwal));
+    if ($nilai->num_rows()>0) {
+        $row = $nilai->row_array();
+        return $row['nilai'];
+    } else {
+        return 0;
+    }
+}
+
 function checkAksesModule()
 {
 	$ci = & get_instance();
@@ -44,11 +55,11 @@ function checkAksesModule()
 	}*/
 
 	//cara kedua untuk protec akses menu
-	if ($check->num_rows()<1) {
-		echo "ANDA TIDAK BOLEH MENGAKSES MODUL INI";
-	}else {
-//		echo "ok";
-	}
+//	if ($check->num_rows()<1) {
+//		echo "ANDA TIDAK BOLEH MENGAKSES MODUL INI";
+//	}else {
+////		echo "ok";
+//	}
 
 //	return $url;
 

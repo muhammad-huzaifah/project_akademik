@@ -42,7 +42,7 @@
 											<td>$row->hari</td>
 											<td>$row->jam</td>
 											<td>$row->nama_ruangan</td>
-											<td>".anchor('nilai/rombel/'.$row->id_rombel,'<i class="fa fa-eye"></i>', "title='Lihat_Kelas'")."</td>
+											<td>".anchor('nilai/rombel/'.$row->id_jadwal,'<i class="fa fa-eye"></i>', "title='Lihat_Kelas'")."</td>
 										  </tr>";
                                     $no++;
                                 }
