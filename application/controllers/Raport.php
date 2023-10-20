@@ -18,17 +18,43 @@ class Raport extends CI_Controller
     }
 
     function nilai_semester() {
+		//block info siswa
+		$nim = $this->uri->segment(3);
+		$sqlSiswa = "SELECT TS.nama, TS.nim, tj.nama_jurusan, TR.nama_rombel
+    					FROM tabel_history_kelas AS hk, tabel_siswa AS ts, tabel_rombel AS tr, tabel_jurusan AS tj
+						WHERE ts.nim=hk.nim AND tr.id_rombel=ts.id_rombel AND tr.kd_jurusan=tj.kd_jurusan AND hk.nim='$nim' AND hk.id_tahun_akademik=". get_tahun_akademik_aktif('id_tahun_akademik');
+		$siswa = $this->db->query($sqlSiswa);
+
         $this->load->library('CFPDF');
         $pdf = new FPDF('P','mm','A4');
         $pdf->AddPage();
         $pdf->SetFont('Arial','B',9);
+
+		$pdf->Cell(30,5,'NIS',1,0,'L');
+		$pdf->Cell(90,5,':',1,0,'L');
+		$pdf->Cell(33,5,'KELAS',1,0,'L');
+		$pdf->Cell(43,5,':',1,1,'L');
+
+		$pdf->Cell(30,5,'NAMA',1,0,'L');
+		$pdf->Cell(90,5,':',1,0,'L');
+		$pdf->Cell(33,5,'TAHUN AJARAN',1,0,'L');
+		$pdf->Cell(43,5,':',1,1,'L');
+
+		$pdf->Cell(30,5,'JURUSAN',1,0,'L');
+		$pdf->Cell(90,5,':',1,0,'L');
+		$pdf->Cell(33,5,'SEMESTER',1,0,'L');
+		$pdf->Cell(43,5,':',1,1,'L');
+
+		$pdf->Cell(1,10,'',0,1);
+
+
         $pdf->Cell(8,5,'NO',1,0,'L');
         $pdf->Cell(40,5,'Mata Pelajaran',1,0,'L');
         $pdf->Cell(10,5,'KKM',1,0,'L');
         $pdf->Cell(12,5,'Angka',1,0,'L');
-        $pdf->Cell(12,5,'Huruf',1,0,'L');
-        $pdf->Cell(45,5,'Ketercapaian Kompetensi',1,0,'L');
-        $pdf->Cell(25,5,'Rata-rata Kelas',1,0,'L');
+        $pdf->Cell(50,5,'Huruf',1,0,'L');
+        $pdf->Cell(50,5,'Ketercapaian Kompetensi',1,0,'L');
+        $pdf->Cell(26,5,'Rata-Rata Kelas',1,0,'L');
 
 
         $pdf->Output();
