@@ -52,7 +52,7 @@
             data:'jurusan='+jurusan,
             success:function(html){
                 $("#rombel").html(html);
-                var rombel = $("#rombel2").val();
+                var rombel = $("#rombel").val();
                 loadSiswa(rombel);
             }
         })

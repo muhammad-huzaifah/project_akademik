@@ -19,6 +19,21 @@ function get_tahun_akademik_aktif($field) {
 	return $tahun[$field];
 }
 
+function check_komponen_biaya($id_jenis_pembayaran){
+    $ci = & get_instance();
+    $where = array(
+        'id_jenis_pembayaran'   =>$id_jenis_pembayaran,
+        'id_tahun_akademik'    =>get_tahun_akademik_aktif('id_tahun_akademik')
+    );
+    $biaya =    $ci->db->get_where('tabel_biaya_sekolah', $where);
+    if ($biaya->num_rows()>0){
+        $row = $biaya->row_array();
+        return $row['jumlah_biaya'];
+    }else {
+        return 0;
+    }
+}
+
 function check_nilai ($nim, $id_jadwal) {
     $ci = & get_instance();
     $nilai = $ci->db->get_where('tabel_nilai', array('nim'=>$nim, 'id_jadwal'=>$id_jadwal));
