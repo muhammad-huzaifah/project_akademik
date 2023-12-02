@@ -40,6 +40,32 @@ INSERT INTO `tabel_agama` VALUES ('01','ISLAM'),('02','KRISTEN/PROTESTAN'),('03'
 UNLOCK TABLES;
 
 --
+-- Table structure for table `tabel_biaya_sekolah`
+--
+
+DROP TABLE IF EXISTS `tabel_biaya_sekolah`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tabel_biaya_sekolah` (
+  `id_biaya` int(11) NOT NULL AUTO_INCREMENT,
+  `id_jenis_pembayaran` int(11) NOT NULL,
+  `id_tahun_akademik` int(11) NOT NULL,
+  `jumlah_biaya` int(11) NOT NULL,
+  PRIMARY KEY (`id_biaya`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tabel_biaya_sekolah`
+--
+
+LOCK TABLES `tabel_biaya_sekolah` WRITE;
+/*!40000 ALTER TABLE `tabel_biaya_sekolah` DISABLE KEYS */;
+INSERT INTO `tabel_biaya_sekolah` VALUES (5,1,1,600000),(6,2,1,900000);
+/*!40000 ALTER TABLE `tabel_biaya_sekolah` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tabel_guru`
 --
 
@@ -89,7 +115,7 @@ CREATE TABLE `tabel_history_kelas` (
 
 LOCK TABLES `tabel_history_kelas` WRITE;
 /*!40000 ALTER TABLE `tabel_history_kelas` DISABLE KEYS */;
-INSERT INTO `tabel_history_kelas` VALUES (1,1,'T525235',1),(2,1,'T123098',1),(3,1,'T0123',1),(4,1,'T879234',1),(5,1,'081840',1),(6,1,'67676647',1),(7,1,'878122',1);
+INSERT INTO `tabel_history_kelas` VALUES (1,1,'081840',1),(2,1,'24253',1),(3,1,'24524525',1),(4,1,'3425115',1),(5,1,'64264647',1),(6,1,'67676647',1),(7,1,'878122',1);
 /*!40000 ALTER TABLE `tabel_history_kelas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,6 +150,30 @@ LOCK TABLES `tabel_jadwal` WRITE;
 /*!40000 ALTER TABLE `tabel_jadwal` DISABLE KEYS */;
 INSERT INTO `tabel_jadwal` VALUES (40,1,'RPL',1,'TIK',3,'08.00-09.00','01A',1,'Rabu',1),(41,2,'RPL',2,'TIK',2,'09.30-10.30','01B',1,'Selasa',2),(42,2,'RPL',3,'MTK',3,'10.30-11.30','01B',1,'Rabu',3),(43,2,'RPL',1,'MTK',5,'13.00-14.00','01B',1,'Kamis',4),(44,2,'TKJ',2,'IPA',2,'08.30-09.30','011',1,'Jum\'at',5),(45,2,'TKJ',3,'IPA',2,'09.30-10.30','011',1,'Senin',6);
 /*!40000 ALTER TABLE `tabel_jadwal` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tabel_jenis_pembayaran`
+--
+
+DROP TABLE IF EXISTS `tabel_jenis_pembayaran`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tabel_jenis_pembayaran` (
+  `id_jenis_pembayaran` int(11) NOT NULL AUTO_INCREMENT,
+  `nama_jenis_pembayaran` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id_jenis_pembayaran`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tabel_jenis_pembayaran`
+--
+
+LOCK TABLES `tabel_jenis_pembayaran` WRITE;
+/*!40000 ALTER TABLE `tabel_jenis_pembayaran` DISABLE KEYS */;
+INSERT INTO `tabel_jenis_pembayaran` VALUES (1,'SPP SEMESTER 1'),(2,'SPP SEMESTER 2'),(4,'SPP SEMESTER 3'),(5,'SPP SEMESTER 4'),(6,'DANA SUMBANGAN POKOK');
+/*!40000 ALTER TABLE `tabel_jenis_pembayaran` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -304,7 +354,7 @@ CREATE TABLE `tabel_menu` (
 
 LOCK TABLES `tabel_menu` WRITE;
 /*!40000 ALTER TABLE `tabel_menu` DISABLE KEYS */;
-INSERT INTO `tabel_menu` VALUES (0,'Raport Online','raport','fa fa-graduation-cap',0),(1,'Database Siswa','siswa','fa fa-users',0),(2,'Database Guru','guru','fa fa-graduation-cap',0),(3,'Data Sekolah','sekolah','fa fa-building',0),(9,'Data Master','#','fa fa-bars',0),(10,'Mata Pelajaran','mapel','fa fa-book',9),(11,'Ruangan Kelas','ruangan','fa fa-building',9),(12,'Jurusan','jurusan','fa fa-th-large',9),(13,'Tahun Akademik','tahunakademik','fa fa-calendar-o',9),(14,'Jadwal Pelajaran','jadwal','fa fa-calendar',0),(15,'Rombongan Belajar','rombel','fa fa-users',9),(16,'Laporan Nilai','nilai','fa fa-file-excel-o',0),(19,'Pengguna Sistem','users','fa fa-cubes',0),(20,'Kurikulum','kurikulum','fa fa-newspaper-o',0),(21,'Wali Kelas','walikelas','fa fa-users',0),(22,'Form Pembayaran','keuangan/form','fa fa-shopping-cart',0),(23,'Peserta Didik','siswa/siswa_aktif','fa fa-graduation-cap',0),(24,'Jenis Pembayaran','jenis_pembayaran','fa fa-credit-card',0),(25,'Setup Biaya','keuangan/setup','fa fa-graduation-cap',0),(26,'Raport Online','raport','fa fa-graduation-cap',0),(27,'SMS Gateway','sms','fa fa-envelope-o',0),(28,'Phonebook','sms_group','fa fa-book',0),(29,'Form SMS','sms','fa fa-keyboard-o',0),(30,'Logout','logout','fa fa-sign-out',0);
+INSERT INTO `tabel_menu` VALUES (0,'Raport Online','raport','fa fa-graduation-cap',0),(1,'Database Siswa','siswa','fa fa-users',0),(2,'Database Guru','guru','fa fa-graduation-cap',0),(3,'Data Sekolah','sekolah','fa fa-building',0),(9,'Data Master','#','fa fa-bars',0),(10,'Mata Pelajaran','mapel','fa fa-book',9),(11,'Ruangan Kelas','ruangan','fa fa-building',9),(12,'Jurusan','jurusan','fa fa-th-large',9),(13,'Tahun Akademik','tahunakademik','fa fa-calendar-o',9),(14,'Jadwal Pelajaran','jadwal','fa fa-calendar',0),(15,'Rombongan Belajar','rombel','fa fa-users',9),(16,'Laporan Nilai','nilai','fa fa-file-excel-o',0),(19,'Pengguna Sistem','users','fa fa-cubes',0),(20,'Kurikulum','kurikulum','fa fa-newspaper-o',0),(21,'Wali Kelas','walikelas','fa fa-users',0),(22,'Form Pembayaran','keuangan/form','fa fa-shopping-cart',0),(23,'Peserta Didik','siswa/siswa_aktif','fa fa-graduation-cap',0),(24,'Jenis Pembayaran','jenis_pembayaran','fa fa-credit-card',0),(25,'Setup Biaya','keuangan/setup','fa fa-graduation-cap',0),(26,'Raport Online','raport','fa fa-graduation-cap',0),(27,'SMS Gateway','sms','fa fa-envelope-o',0),(28,'Phonebook','sms_group','fa fa-book',27),(29,'Form SMS','sms','fa fa-keyboard-o',27),(30,'Laporan','keuangan','fa fa-newspaper-o',0),(31,'Logout','logout','fa fa-sign-out',0);
 /*!40000 ALTER TABLE `tabel_menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -337,6 +387,36 @@ INSERT INTO `tabel_nilai` VALUES (8,40,'081840',80),(9,40,'67676647',70),(10,40,
 UNLOCK TABLES;
 
 --
+-- Table structure for table `tabel_pembayaran`
+--
+
+DROP TABLE IF EXISTS `tabel_pembayaran`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tabel_pembayaran` (
+  `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT,
+  `tanggal` date NOT NULL,
+  `nis` varchar(13) NOT NULL,
+  `id_jenis_pembayaran` int(11) NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `keterangan` text NOT NULL,
+  PRIMARY KEY (`id_pembayaran`),
+  KEY `tabel_pembayaran_tabel_jenis_pembayaran_id_jenis_pembayaran_fk` (`id_jenis_pembayaran`),
+  CONSTRAINT `tabel_pembayaran_tabel_jenis_pembayaran_id_jenis_pembayaran_fk` FOREIGN KEY (`id_jenis_pembayaran`) REFERENCES `tabel_jenis_pembayaran` (`id_jenis_pembayaran`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tabel_pembayaran`
+--
+
+LOCK TABLES `tabel_pembayaran` WRITE;
+/*!40000 ALTER TABLE `tabel_pembayaran` DISABLE KEYS */;
+INSERT INTO `tabel_pembayaran` VALUES (1,'2023-10-28','24253',1,200000,'spp bulan oktober'),(2,'2023-10-28','081840',1,300000,'spp bulan oktober');
+/*!40000 ALTER TABLE `tabel_pembayaran` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tabel_rombel`
 --
 
@@ -360,7 +440,7 @@ CREATE TABLE `tabel_rombel` (
 
 LOCK TABLES `tabel_rombel` WRITE;
 /*!40000 ALTER TABLE `tabel_rombel` DISABLE KEYS */;
-INSERT INTO `tabel_rombel` VALUES (1,'RPL1A',1,'RPL'),(2,'RPL1A',3,'RPL'),(3,'RPL1A',4,'RPL'),(4,'RPL1A',5,'RPL'),(5,'RPL2A',2,'RPL'),(6,'RPL1A ',6,'RPL');
+INSERT INTO `tabel_rombel` VALUES (1,'RPL1A',1,'RPL'),(2,'RPL1B',3,'RPL'),(3,'RPL1C',4,'RPL'),(4,'RPL2A',5,'RPL'),(5,'RPL2B',2,'RPL'),(6,'RPL2C',6,'RPL');
 /*!40000 ALTER TABLE `tabel_rombel` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -416,7 +496,7 @@ CREATE TABLE `tabel_siswa` (
 
 LOCK TABLES `tabel_siswa` WRITE;
 /*!40000 ALTER TABLE `tabel_siswa` DISABLE KEYS */;
-INSERT INTO `tabel_siswa` VALUES ('081840','ayah ujeb baik','P','1978-11-19','medan','01','63457.jpg',1),('67676647','ira iru','P','2016-12-12','bekasi','01','businessman-310819_1280.png',1),('878122','mama ina cantik','W','2015-07-24','Bekasi','01','',1),('T102137','Rina','W','2022-12-15','Jakarta','01','IMG_20220626_122031.jpg',1),('T120139','MUHAMMAD HUZAIFAH, S.Kom.','P','2022-12-13','Medan','01','pas_photo_terbaru.jpg',1),('TIM102317','Abang Ujeb keren','P','2022-12-15','Medan','01','IMG_20220626_122319.jpg',1),('TIM102318','Muhammad Khairu Mubarak Huzaifah','P','2022-12-04','Bekasi','01','IMG_20220827_073532.jpg',1);
+INSERT INTO `tabel_siswa` VALUES ('081840','AYAH UJEB','P','1978-11-19','medan','01','63457.jpg',1),('24253','Rina','W','2022-12-15','Jakarta','01','IMG_20220626_122031.jpg',1),('24524525','Muhammad Khairu Mubarak Huzaifah','P','2022-12-04','Bekasi','01','IMG_20220827_073532.jpg',1),('3425115','Abang Ujeb keren','P','2022-12-15','Medan','01','IMG_20220626_122319.jpg',1),('64264647','MUHAMMAD HUZAIFAH, S.Kom.','P','2022-12-13','Medan','01','pas_photo_terbaru.jpg',1),('67676647','ira iru','P','2016-12-12','bekasi','01','businessman-310819_1280.png',1);
 /*!40000 ALTER TABLE `tabel_siswa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -488,7 +568,7 @@ CREATE TABLE `tabel_user_rule` (
   `id_menu` int(11) DEFAULT NULL,
   `id_level_user` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_rule`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -497,7 +577,7 @@ CREATE TABLE `tabel_user_rule` (
 
 LOCK TABLES `tabel_user_rule` WRITE;
 /*!40000 ALTER TABLE `tabel_user_rule` DISABLE KEYS */;
-INSERT INTO `tabel_user_rule` VALUES (1,21,4),(4,10,3),(5,23,4),(6,1,1),(7,2,1),(8,3,1),(9,9,1),(10,10,1),(11,11,1),(12,12,1),(13,13,1),(15,17,1),(16,19,1),(18,16,3),(19,14,3),(20,16,2),(21,20,2),(22,15,2),(27,1,2),(30,29,2),(31,29,4),(33,15,3),(34,12,3),(36,11,3),(37,15,1),(38,30,1),(40,17,3),(41,26,3),(42,14,1);
+INSERT INTO `tabel_user_rule` VALUES (4,10,3),(6,1,1),(7,2,1),(8,3,1),(9,9,1),(10,10,1),(11,11,1),(12,12,1),(13,13,1),(15,17,1),(16,19,1),(18,16,3),(19,14,3),(20,16,2),(21,20,2),(22,15,2),(27,1,2),(30,29,2),(31,29,4),(33,15,3),(34,12,3),(36,11,3),(37,15,1),(38,30,1),(40,17,3),(41,26,3),(42,14,1),(43,22,4),(44,24,4),(45,25,4),(46,27,4),(47,30,4),(48,28,4),(49,23,1),(50,29,1),(51,27,1),(52,28,1),(53,22,1);
 /*!40000 ALTER TABLE `tabel_user_rule` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -672,4 +752,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-20 11:06:47
+-- Dump completed on 2023-12-01  8:34:44
