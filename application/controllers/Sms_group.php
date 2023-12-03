@@ -51,7 +51,9 @@ class Sms_group extends CI_Controller
     {
         if (isset($_POST['submit'])) {
 //			echo "save";
-//			$this->Model_sms_group->save();
+			//membuat group
+			$id_group = $this->Model_sms_group->save();
+			//upload data excel
             $config['upload_path'] = './uploads/phonebook';
             $config['allowed_types'] = 'xlsx';
             $config['max_size'] = 100;
@@ -61,9 +63,31 @@ class Sms_group extends CI_Controller
             $this->load->library('upload', $config);
             $this->upload->do_upload('userfile');
             $upload = $this->upload->data();
-            $file_name = $upload['file_name'];
-            print_r($upload);
-            die();
+
+			//membaca data excel
+			$this->load->library('CPHP_excel');
+// nama file
+			$inputFileName = "uploads/phonebook/".$upload['file_name'];
+			try {
+				$inputFileType = PHPExcel_IOFactory::identify($inputFileName);
+				$objReader = PHPExcel_IOFactory::createReader($inputFileType);
+				$objPHPExcel = $objReader->load($inputFileName);
+			} catch(Exception $e) {
+				die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+			}
+
+//  Get worksheet dimensions
+			$sheet = $objPHPExcel->getSheet(0);
+			$highestRow = $sheet->getHighestRow();
+			$highestColumn = $sheet->getHighestColumn();
+
+//  Loop through each row of the worksheet in turn
+			for ($row = 2; $row <= $highestRow; $row++) {
+				//  Read a row of data into an array
+				$rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row, NULL, TRUE, FALSE);
+				$no_hp = $rowData[0][0];
+				$this->db->insert('tabel_phonebook', array('id_group'=>$id_group, 'no_hp'=>$no_hp));
+			}
             redirect('sms_group');
         } else {
             $this->template->load('template', 'sms_group/add');

@@ -417,6 +417,31 @@ INSERT INTO `tabel_pembayaran` VALUES (1,'2023-10-28','24253',1,200000,'spp bula
 UNLOCK TABLES;
 
 --
+-- Table structure for table `tabel_phonebook`
+--
+
+DROP TABLE IF EXISTS `tabel_phonebook`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tabel_phonebook` (
+  `id_phonebook` int(11) NOT NULL AUTO_INCREMENT,
+  `id_group` int(11) NOT NULL,
+  `no_hp` varchar(13) NOT NULL,
+  PRIMARY KEY (`id_phonebook`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tabel_phonebook`
+--
+
+LOCK TABLES `tabel_phonebook` WRITE;
+/*!40000 ALTER TABLE `tabel_phonebook` DISABLE KEYS */;
+INSERT INTO `tabel_phonebook` VALUES (1,8,'081386745521');
+/*!40000 ALTER TABLE `tabel_phonebook` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tabel_rombel`
 --
 
@@ -511,7 +536,7 @@ CREATE TABLE `tabel_sms_group` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nama_group` varchar(30) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -520,7 +545,7 @@ CREATE TABLE `tabel_sms_group` (
 
 LOCK TABLES `tabel_sms_group` WRITE;
 /*!40000 ALTER TABLE `tabel_sms_group` DISABLE KEYS */;
-INSERT INTO `tabel_sms_group` VALUES (1,'group 1'),(2,'group 2');
+INSERT INTO `tabel_sms_group` VALUES (1,'group 1'),(2,'group 2'),(4,'testing excel'),(8,'Wali Murid');
 /*!40000 ALTER TABLE `tabel_sms_group` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -776,4 +801,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-12-01 16:55:43
+-- Dump completed on 2023-12-03 17:01:50
