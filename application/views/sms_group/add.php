@@ -2,7 +2,11 @@
 	<div class="">
 		<div class="page-title">
 			<div class="title_left">
+<<<<<<< HEAD
 				<h3>Formulir Tambah Nama Group</h3>
+=======
+				<h3>Formulir Tambah Mata Pelajaran</h3>
+>>>>>>> origin/master
 			</div>
 		</div>
 		<div class="clearfix"></div>
@@ -31,6 +35,7 @@
 						<br>
 
 							<?php
+<<<<<<< HEAD
 								echo form_open_multipart('sms_group/add', 'id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate=""');
 							?>
 							<div class="item form-group">
@@ -44,6 +49,23 @@
 								</label>
 								<div class="col-md-6 col-sm-6 ">
 									<input type="file" name="userfile" id="last-name" name="last-name" required="required" class="form-control">
+=======
+								echo form_open('mapel/add', 'id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate=""');
+							?>
+							<div class="item form-group">
+								<label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">KODE MATA PELAJARAN<span class="required">*</span>
+								</label>
+								<div class="col-md-6 col-sm-6 ">
+									<input type="text" name="kd_mapel" placeholder="Masukkan Kode Mata Pelajaran" id="first-name" required="required" class="form-control ">
+								</div>
+							</div>
+
+							<div class="item form-group">
+								<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">NAMA MATA PELAJARAN<span class="required">*</span>
+								</label>
+								<div class="col-md-6 col-sm-6 ">
+									<input type="text" name="nama_mapel" placeholder="Masukkan Nama Mata Pelajaran" id="last-name" name="last-name" required="required" class="form-control">
+>>>>>>> origin/master
 								</div>
 							</div>
 
@@ -51,7 +73,11 @@
 							<div class="item form-group">
 								<div class="col-md-6 col-sm-6 offset-md-3">
 									<?php
+<<<<<<< HEAD
 										echo anchor('sms_group', 'Kembali', array('class'=>'btn btn-primary'));
+=======
+										echo anchor('mapel', 'Kembali', array('class'=>'btn btn-primary'));
+>>>>>>> origin/master
 									?>
 									<button type="submit" name="submit" class="btn btn-success">Simpan</button>
 								</div>

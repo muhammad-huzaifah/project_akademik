@@ -47,6 +47,7 @@ class Sms_group extends CI_Controller
 	function add(){
 		if (isset($_POST['submit'])) {
 //			echo "save";
+<<<<<<< HEAD
 //			$this->Model_sms_group->save();
             $config['upload_path']          = './uploads/phonebook';
             $config['allowed_types']        = 'xlsx';
@@ -60,6 +61,9 @@ class Sms_group extends CI_Controller
             $file_name = $upload['file_name'];
             print_r($upload);
             die();
+=======
+			$this->Model_sms_group->save();
+>>>>>>> origin/master
 			redirect('sms_group');
 		} else {
 			$this->template->load('template', 'sms_group/add');
@@ -71,16 +75,27 @@ class Sms_group extends CI_Controller
 		$this->Model_sms_group->update();
 		redirect('sms_group');
 	}else {
+<<<<<<< HEAD
 		$id 			= $this->uri->segment(3);
 		$data['sms_group'] 	= $this->db->get_where('tabel_sms_group', array('id'=>$id))->row_array();
+=======
+		$edit 			= $this->uri->segment(3);
+		$data['sms_group'] 	= $this->db->get_where('tabel_sms_group', array('kd_sms_group'=>$edit))->row_array();
+>>>>>>> origin/master
 		$this->template->load('template', 'sms_group/edit', $data);
 	}
 	}
 
 	function delete() {
+<<<<<<< HEAD
 		$id = $this->uri->segment(3);
 		if (!empty($id)) {
 			$this->db->where('id', $id);
+=======
+		$edit = $this->uri->segment(3);
+		if (!empty($edit)) {
+			$this->db->where('kd_sms_group', $edit);
+>>>>>>> origin/master
 			$this->db->delete('tabel_sms_group');
 		}
 		redirect('sms_group');

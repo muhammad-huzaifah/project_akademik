@@ -2,7 +2,11 @@
 	<div class="">
 		<div class="page-title">
 			<div class="title_left">
+<<<<<<< HEAD
 				<h3>Formulir Edit Nama Group</h3>
+=======
+				<h3>Formulir Edit Mata Pelajaran</h3>
+>>>>>>> origin/master
 			</div>
 		</div>
 		<div class="clearfix"></div>
@@ -31,6 +35,7 @@
 						<br>
 
 							<?php
+<<<<<<< HEAD
 								echo form_open('sms_group/edit', 'id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate=""');
 								echo form_hidden('id', $sms_group['id']);
 							?>
@@ -52,6 +57,36 @@
                                     </div>
                                 </div>
                             </div>
+=======
+								echo form_open('mapel/edit', 'id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate=""');
+								echo form_hidden('kd_mapel', $mapel['kd_mapel']);
+							?>
+							<div class="item form-group">
+								<label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">KODE MATA PELAJARAN<span class="required">*</span>
+								</label>
+								<div class="col-md-6 col-sm-6 ">
+									<input type="text" value="<?php echo $mapel['kd_mapel'];?>" readonly="" placeholder="Masukkan Kode Mata Pelajaran" name="kd_mapel" required="required" class="form-control ">
+								</div>
+							</div>
+
+							<div class="item form-group">
+								<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">NAMA MATA PELAJARAN<span class="required">*</span>
+								</label>
+								<div class="col-md-6 col-sm-6 ">
+									<input type="text" value="<?php echo $mapel['nama_mapel'];?>" name="nama_mapel" placeholder="Masukkan Nama Mata Pelajaran" id="last-name" name="last-name" required="required" class="form-control">
+								</div>
+							</div>
+
+							<div class="ln_solid"></div>
+							<div class="item form-group">
+								<div class="col-md-6 col-sm-6 offset-md-3">
+									<?php
+										echo anchor('mapel', 'Kembali', array('class'=>'btn btn-primary'));
+									?>
+									<button type="submit" name="submit" class="btn btn-success">Simpan</button>
+								</div>
+							</div>
+>>>>>>> origin/master
 						</form>
 					</div>
 				</div>
